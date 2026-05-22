@@ -33,7 +33,7 @@ export default function PELanding() {
         <div className="max-w-2xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 text-white/80 text-sm font-medium mb-8">
             <Clock className="w-4 h-4" />
-            18 questions &middot; Under 10 minutes
+            18–20 questions &middot; Under 10 minutes
           </div>
 
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white">
