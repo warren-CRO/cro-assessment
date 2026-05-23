@@ -9,7 +9,6 @@ import {
   Shield,
   ShieldAlert,
   CheckCircle,
-  Users,
 } from 'lucide-react'
 import type { PEAnswers, DetectedPattern } from '../data/pe-types'
 import { detectPatterns } from '../data/pe-detection'
@@ -395,13 +394,13 @@ export default function PEResults() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
-                href="https://thecrocollective.com/roundtables"
+                href="/framework.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/30 text-white hover:border-white hover:text-white font-display font-semibold rounded-lg transition-all duration-200"
               >
-                <Users className="w-5 h-5" />
-                PE Revenue Roundtable
+                Read the Revenue Leadership Framework
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
           </div>
