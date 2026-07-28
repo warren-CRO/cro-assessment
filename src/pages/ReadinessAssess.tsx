@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import type { ReadinessRole, ReadinessRevenue, ReadinessFunding, HireReason, DimensionId, DimensionQuestion } from '../data/readiness-types'
@@ -33,35 +33,28 @@ export default function ReadinessAssess() {
   const [, setAnswers] = useState<Answers>({ dimensions: new Map() })
   const [animating, setAnimating] = useState(false)
 
+  const answersRef = useRef<Answers>({ dimensions: new Map() })
+
   const advance = useCallback((nextStep: Step | 'done', patch: Partial<Omit<Answers, 'dimensions'>> & { dimensionEntry?: { id: DimensionId; score: number; label: string } }) => {
     setAnimating(true)
     const { dimensionEntry, ...contextPatch } = patch
-    setAnswers(prev => {
-      const next = { ...prev, ...contextPatch }
-      if (dimensionEntry) {
-        const dims = new Map(prev.dimensions)
-        dims.set(dimensionEntry.id, { score: dimensionEntry.score, label: dimensionEntry.label })
-        next.dimensions = dims
-      }
-      return next
-    })
+    const updated = { ...answersRef.current, ...contextPatch }
+    if (dimensionEntry) {
+      const dims = new Map(updated.dimensions)
+      dims.set(dimensionEntry.id, { score: dimensionEntry.score, label: dimensionEntry.label })
+      updated.dimensions = dims
+    }
+    answersRef.current = updated
+    setAnswers(updated)
     trackEvent('readiness_step', { step: nextStep === 'done' ? 'complete' : String(nextStep) })
     setTimeout(() => {
       if (nextStep === 'done') {
-        setAnswers(prev => {
-          const final = { ...prev, ...contextPatch }
-          if (dimensionEntry) {
-            const dims = new Map(prev.dimensions)
-            dims.set(dimensionEntry.id, { score: dimensionEntry.score, label: dimensionEntry.label })
-            final.dimensions = dims
-          }
-          const encoded = btoa(JSON.stringify({
-            ctx: { role: final.role, revenue: final.revenue, funding: final.funding, hireReason: final.hireReason },
-            dim: Array.from(final.dimensions.entries()).map(([id, v]) => ({ id, score: v.score, label: v.label })),
-          }))
-          navigate(`/readiness/results/${encoded}`)
-          return final
-        })
+        const final = answersRef.current
+        const encoded = btoa(encodeURIComponent(JSON.stringify({
+          ctx: { role: final.role, revenue: final.revenue, funding: final.funding, hireReason: final.hireReason },
+          dim: Array.from(final.dimensions.entries()).map(([id, v]) => ({ id, score: v.score, label: v.label })),
+        })))
+        navigate(`/readiness/results/${encoded}`)
       } else {
         setStep(nextStep)
         setAnimating(false)

@@ -50,7 +50,7 @@ export default function ReadinessResults() {
 
   const result = useMemo<ReadinessResult | null>(() => {
     try {
-      const parsed: Decoded = JSON.parse(atob(encoded || ''))
+      const parsed: Decoded = JSON.parse(decodeURIComponent(atob(encoded || '')))
       const scores: DimensionScore[] = parsed.dim.map(d => {
         const q = dimensionQuestions.find(dq => dq.id === d.id)!
         return {
