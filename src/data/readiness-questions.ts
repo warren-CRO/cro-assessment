@@ -9,11 +9,12 @@ export const roleOptions: { id: ReadinessRole; label: string; description: strin
 ];
 
 export const revenueOptions: { id: ReadinessRevenue; label: string }[] = [
-  { id: 'under-10m', label: 'Under $10M' },
-  { id: '10-50m', label: '$10M – $50M' },
+  { id: '1-5m', label: '$1M – $5M' },
+  { id: '5-10m', label: '$5M – $10M' },
+  { id: '10-25m', label: '$10M – $25M' },
+  { id: '25-50m', label: '$25M – $50M' },
   { id: '50-100m', label: '$50M – $100M' },
-  { id: '100-300m', label: '$100M – $300M' },
-  { id: '300m-plus', label: '$300M+' },
+  { id: '200m-plus', label: '$200M+' },
 ];
 
 export const fundingOptions: { id: ReadinessFunding; label: string }[] = [
@@ -30,7 +31,7 @@ export const hireReasonOptions: { id: HireReason; label: string; description: st
   { id: 'exploring', label: 'Exploring the Idea', description: "Not sure if a CRO is the right move yet" },
 ];
 
-export const dimensionQuestions: DimensionQuestion[] = [
+const baseDimensionQuestions: DimensionQuestion[] = [
   {
     id: 'D1',
     dimension: 'CEO Alignment',
@@ -48,7 +49,7 @@ export const dimensionQuestions: DimensionQuestion[] = [
     id: 'D2',
     dimension: 'Data Maturity',
     layer: 'foundational',
-    question: 'When you need to understand how revenue is actually performing, what happens?',
+    question: 'How reliable is the data your revenue team uses to make decisions?',
     options: [
       { label: 'We rely on tribal knowledge — the data lives in people\'s heads', score: 1 },
       { label: 'We have a CRM but it\'s messy — reporting requires manual work and spreadsheets', score: 2 },
@@ -61,7 +62,7 @@ export const dimensionQuestions: DimensionQuestion[] = [
     id: 'D3',
     dimension: 'Team Readiness',
     layer: 'foundational',
-    question: 'How would you describe the revenue team a CRO would inherit?',
+    question: 'Describe the state of the revenue team that a CRO would inherit.',
     options: [
       { label: 'Mostly founder-led sales with a few reps — no real structure', score: 1 },
       { label: 'A sales team exists but we lack specialized functions like RevOps, CS, or demand gen', score: 2 },
@@ -162,3 +163,44 @@ export const dimensionQuestions: DimensionQuestion[] = [
     ],
   },
 ];
+
+type QuestionOverride = { question: string; options?: DimensionQuestion['options'] };
+
+const roleOverrides: Partial<Record<ReadinessRole, Record<string, QuestionOverride>>> = {
+  ceo: {
+    D1: {
+      question: 'How do you view this revenue leadership role?',
+      options: [
+        { label: 'As a senior sales leader who reports into the existing structure', score: 1 },
+        { label: 'As someone to own the revenue number and manage the sales team', score: 2 },
+        { label: 'As a revenue leader with specific authority, though you stay hands-on', score: 3 },
+        { label: 'As a true partner who co-owns the go-to-market strategy with defined decision rights', score: 4 },
+        { label: 'As the single accountable executive for end-to-end revenue architecture', score: 5 },
+      ],
+    },
+    D9: { question: 'How much runway are you and the board prepared to give a new CRO?' },
+  },
+  'pe-operator': {
+    D1: { question: 'How does the CEO of this portfolio company view the revenue leadership role?' },
+    D9: { question: 'How much runway is the operating plan allowing for this CRO hire?' },
+  },
+  board: {
+    D9: { question: 'How much runway is the board prepared to endorse for a new CRO?' },
+  },
+};
+
+export function getDimensionQuestions(role: ReadinessRole): DimensionQuestion[] {
+  const overrides = roleOverrides[role] ?? {};
+
+  return baseDimensionQuestions.map(q => {
+    const override = overrides[q.id];
+    if (!override) return q;
+    return {
+      ...q,
+      question: override.question,
+      options: override.options ?? q.options,
+    };
+  });
+}
+
+export const dimensionQuestions = baseDimensionQuestions;

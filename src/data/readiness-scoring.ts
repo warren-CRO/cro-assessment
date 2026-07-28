@@ -145,11 +145,12 @@ export function getCROType(context: ContextAnswers): { type: string; description
   }
 
   const revenueToStage: Record<ReadinessRevenue, { type: string; description: string }> = {
-    'under-10m': { type: 'Builder / Starter CRO', description: 'Creating the revenue system from scratch — needs a hands-on operator who can build while doing' },
-    '10-50m': { type: 'Growth CRO', description: 'Taking a working foundation and building the machine — systematizing what the founder started' },
+    '1-5m': { type: 'Builder / Starter CRO', description: 'Creating the revenue system from scratch — needs a hands-on operator who can build while doing' },
+    '5-10m': { type: 'Builder / Starter CRO', description: 'Creating the revenue system from scratch — needs a hands-on operator who can build while doing' },
+    '10-25m': { type: 'Growth CRO', description: 'Taking a working foundation and building the machine — systematizing what the founder started' },
+    '25-50m': { type: 'Growth CRO', description: 'Taking a working foundation and building the machine — systematizing what the founder started' },
     '50-100m': { type: 'Scaling CRO', description: 'Approaching the $100M Competency Cliff — needs someone who\'s navigated multi-motion complexity' },
-    '100-300m': { type: 'Full-Stack CRO', description: 'True cross-functional revenue leadership across multiple motions, segments, and geographies' },
-    '300m-plus': { type: 'Strategic CRO', description: 'Board-level revenue architect — portfolio management, M&A integration, enterprise transformation' },
+    '200m-plus': { type: 'Strategic CRO', description: 'Board-level revenue architect — portfolio management, M&A integration, enterprise transformation' },
   };
 
   return revenueToStage[context.revenue];

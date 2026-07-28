@@ -1,5 +1,5 @@
 export type ReadinessRole = 'ceo' | 'board' | 'pe-operator' | 'hr-talent' | 'search-firm';
-export type ReadinessRevenue = 'under-10m' | '10-50m' | '50-100m' | '100-300m' | '300m-plus';
+export type ReadinessRevenue = '1-5m' | '5-10m' | '10-25m' | '25-50m' | '50-100m' | '200m-plus';
 export type ReadinessFunding = 'bootstrapped' | 'pe-backed' | 'vc-backed' | 'public';
 export type HireReason = 'first-cro' | 'replacing' | 'restructuring' | 'exploring';
 

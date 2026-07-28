@@ -1,10 +1,10 @@
 import { useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
-import type { ReadinessRole, ReadinessRevenue, ReadinessFunding, HireReason, DimensionId } from '../data/readiness-types'
+import type { ReadinessRole, ReadinessRevenue, ReadinessFunding, HireReason, DimensionId, DimensionQuestion } from '../data/readiness-types'
 import {
   roleOptions, revenueOptions, fundingOptions, hireReasonOptions,
-  dimensionQuestions,
+  getDimensionQuestions,
 } from '../data/readiness-questions'
 
 type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14
@@ -29,6 +29,7 @@ function trackEvent(eventName: string, params?: Record<string, string | number>)
 export default function ReadinessAssess() {
   const navigate = useNavigate()
   const [step, setStep] = useState<Step>(1)
+  const [role, setRole] = useState<ReadinessRole | undefined>()
   const [, setAnswers] = useState<Answers>({ dimensions: new Map() })
   const [animating, setAnimating] = useState(false)
 
@@ -74,7 +75,8 @@ export default function ReadinessAssess() {
   }
 
   const dimIndex = step > 4 ? step - 5 : -1
-  const currentDimension = dimIndex >= 0 ? dimensionQuestions[dimIndex] : null
+  const questions = role ? getDimensionQuestions(role) : getDimensionQuestions('ceo')
+  const currentDimension = dimIndex >= 0 ? questions[dimIndex] : null
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -104,7 +106,7 @@ export default function ReadinessAssess() {
 
       <div className={`max-w-2xl mx-auto w-full px-4 flex-1 flex flex-col justify-center transition-opacity duration-300 ${animating ? 'opacity-0' : 'opacity-100'}`}>
         {step === 1 && (
-          <QRole onSelect={role => advance(2, { role })} />
+          <QRole onSelect={r => { setRole(r); advance(2, { role: r }) }} />
         )}
         {step === 2 && (
           <QRevenue onSelect={revenue => advance(3, { revenue })} />
@@ -182,7 +184,7 @@ function QHireReason({ onSelect }: { onSelect: (reason: HireReason) => void }) {
   )
 }
 
-function QDimension({ dimension, onSelect }: { dimension: typeof dimensionQuestions[number]; onSelect: (score: number, label: string) => void }) {
+function QDimension({ dimension, onSelect }: { dimension: DimensionQuestion; onSelect: (score: number, label: string) => void }) {
   return (
     <QuestionLayout label={dimension.dimension} question={dimension.question}>
       <div className="grid gap-3">
