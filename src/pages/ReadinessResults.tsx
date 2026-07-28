@@ -386,7 +386,7 @@ export default function ReadinessResults() {
               ? 'Fix the Structure Before You Hire'
               : result.band === 'moderate'
                 ? 'You\'re Ready to Have the Right Conversation'
-                : 'Get the Hire Right the First Time'
+                : 'Now Make the Integration Count'
             }
           </h3>
           <p className="text-white/70 text-sm leading-relaxed mb-6 max-w-lg mx-auto">
@@ -394,7 +394,7 @@ export default function ReadinessResults() {
               ? 'The CRO Collective helps companies build the conditions for CRO success before making the hire. Every gap in your assessment is a conversation we can help with.'
               : result.band === 'moderate'
                 ? 'You\'ve done the hard part — building the foundation. The CRO Collective helps you close the remaining gaps and architect a role that sets your next CRO up to succeed from Day 1.'
-                : 'At your level of readiness, the CRO decision is about architecture — stage match, operating model, decision rights, and the CEO-CRO dynamic. That\'s exactly what The CRO Collective was built for.'
+                : 'You\'ve built the readiness. The CRO Collective helps you get the integration right — the match, the onboarding architecture, the first 90 days, and the CEO-CRO operating dynamic that makes it last.'
             }
           </p>
           <a

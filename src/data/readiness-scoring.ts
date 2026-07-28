@@ -86,9 +86,9 @@ export const bandConfig: Record<ReadinessBand, {
     color: '#10B981',
     bgColor: '#ECFDF5',
     borderColor: '#A7F3D0',
-    headline: 'You\'re past the basics. Now the CRO hire is a strategic architecture decision.',
-    description: 'Most companies never get here. Your readiness profile means you can support a CRO with real authority and a full mandate — but that makes the hire harder, not easier. At this level, the wrong CRO costs more than no CRO. The decision is about match: stage, operating style, decision rights, and the CEO-CRO dynamic. That\'s what we specialize in.',
-    croScope: 'Full-scope CRO with board-level authority — the details matter more than the title',
+    headline: 'Your organization is well-positioned. Now the hard work begins.',
+    description: 'Most companies never build this level of readiness — you have. That\'s a real achievement. But building the infrastructure and successfully integrating a CRO into it are two very different challenges. The companies that get this far and still fail do so because they treat the hire like the finish line. It\'s the starting line. Getting the match right — stage, operating style, decision rights, the CEO-CRO dynamic — is where the real work happens.',
+    croScope: 'Full-scope CRO with board-level authority — the integration is what matters now',
   },
 };
 
