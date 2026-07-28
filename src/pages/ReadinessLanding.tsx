@@ -22,7 +22,7 @@ export default function ReadinessLanding() {
 
       <div
         className="relative flex-1 flex flex-col items-center justify-center px-4 pt-24 pb-16 overflow-hidden"
-        style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}
+        style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}
       >
         <img
           src="/maze-60.png"
@@ -50,7 +50,7 @@ export default function ReadinessLanding() {
 
           <button
             onClick={() => navigate('/readiness/assess')}
-            className="group inline-flex items-center gap-3 px-8 py-4 bg-gold hover:bg-gold-dark text-navy font-display font-semibold text-lg rounded-lg transition-all duration-200 hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-3 px-8 py-4 bg-cyan hover:bg-blue text-navy font-display font-semibold text-lg rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:text-white"
           >
             Start the Readiness Assessment
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

@@ -330,7 +330,7 @@ export default function ReadinessResults() {
         )}
 
         {/* Email Gate for Full Report + JD */}
-        <div className="rounded-2xl border-2 border-blue/20 bg-blue-light p-8 mb-8">
+        <div className="rounded-2xl border-2 border-cyan/30 bg-blue-light p-8 mb-8">
           {!emailSubmitted ? (
             <>
               <div className="flex items-center gap-2 mb-3">
@@ -357,7 +357,7 @@ export default function ReadinessResults() {
                 </div>
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-gold hover:bg-gold-dark text-navy font-display font-semibold text-sm rounded-lg transition-colors shrink-0"
+                  className="px-6 py-3 bg-blue hover:bg-navy-mid text-white font-display font-semibold text-sm rounded-lg transition-colors shrink-0"
                 >
                   Generate My JD
                 </button>
@@ -380,7 +380,7 @@ export default function ReadinessResults() {
         </div>
 
         {/* CTA */}
-        <div className="rounded-2xl p-8 text-center" style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}>
+        <div className="rounded-2xl p-8 text-center" style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}>
           <h3 className="font-display text-2xl font-bold text-white mb-3">
             {result.band === 'critical' || result.band === 'limited'
               ? 'Fix the Structure Before You Hire'
@@ -401,7 +401,7 @@ export default function ReadinessResults() {
             href="https://thecrocollective.com/contact"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gold hover:bg-gold-dark text-navy font-display font-semibold rounded-lg transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-semibold rounded-lg transition-colors"
           >
             Talk to The CRO Collective
           </a>
