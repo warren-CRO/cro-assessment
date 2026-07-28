@@ -5,6 +5,9 @@ import Results from './pages/Results'
 import PELanding from './pages/PELanding'
 import PEAssessment from './pages/PEAssessment'
 import PEResults from './pages/PEResults'
+import ReadinessLanding from './pages/ReadinessLanding'
+import ReadinessAssess from './pages/ReadinessAssess'
+import ReadinessResults from './pages/ReadinessResults'
 
 export default function App() {
   return (
@@ -15,6 +18,9 @@ export default function App() {
       <Route path="/pe" element={<PELanding />} />
       <Route path="/pe/assess" element={<PEAssessment />} />
       <Route path="/pe/results/:encoded" element={<PEResults />} />
+      <Route path="/readiness" element={<ReadinessLanding />} />
+      <Route path="/readiness/assess" element={<ReadinessAssess />} />
+      <Route path="/readiness/results/:encoded" element={<ReadinessResults />} />
     </Routes>
   )
 }
