@@ -386,15 +386,15 @@ export default function ReadinessResults() {
               ? 'Fix the Structure Before You Hire'
               : result.band === 'moderate'
                 ? 'Close the Gaps. Then Hire Right.'
-                : 'Ready to Find the Right CRO?'
+                : 'Let\'s Validate What This Assessment Can\'t See'
             }
           </h3>
           <p className="text-white/70 text-sm leading-relaxed mb-6 max-w-lg mx-auto">
             {result.band === 'critical' || result.band === 'limited'
               ? 'The CRO Collective helps companies build the conditions for CRO success before making the hire. Every gap in your assessment is a conversation we can help with.'
               : result.band === 'moderate'
-                ? 'You\'re close. A focused engagement can close the remaining gaps and set your next CRO up to succeed from Day 1.'
-                : 'The CRO Collective can help you find and onboard the right CRO for your stage — and ensure the conditions for success stay in place.'
+                ? 'You\'re close — but close isn\'t ready. A diagnostic conversation will reveal what this assessment can\'t: whether these scores hold up in practice.'
+                : 'Strong self-assessment scores are a starting point, not a finish line. The CRO Collective\'s diagnostic goes deeper — validating what you believe about your organization against what\'s actually true.'
             }
           </p>
           <a

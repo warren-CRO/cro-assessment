@@ -42,8 +42,7 @@ function scoreToBand(total: number): ReadinessBand {
   if (total <= 19) return 'critical';
   if (total <= 29) return 'limited';
   if (total <= 39) return 'moderate';
-  if (total <= 45) return 'strong';
-  return 'exceptional';
+  return 'strong';
 }
 
 export const bandConfig: Record<ReadinessBand, {
@@ -69,8 +68,8 @@ export const bandConfig: Record<ReadinessBand, {
     color: '#F59E0B',
     bgColor: '#FFFBEB',
     borderColor: '#FDE68A',
-    headline: 'Significant gaps exist. A CRO-Lite scope is realistic.',
-    description: 'You could hire a revenue leader, but the full CRO mandate would outrun your current infrastructure. A narrower scope — focused on the functions and authority you can actually support — is the honest path.',
+    headline: 'Significant gaps exist. A CRO hire right now carries real risk.',
+    description: 'You could hire a revenue leader, but the full CRO mandate would outrun your current infrastructure. A narrower scope — focused on the functions and authority you can actually support — is the honest path. The gaps this assessment surfaced are just the ones visible from the outside.',
     croScope: 'CRO-Lite: narrowed scope aligned to current infrastructure',
   },
   moderate: {
@@ -78,27 +77,18 @@ export const bandConfig: Record<ReadinessBand, {
     color: '#3B82F6',
     bgColor: '#EFF6FF',
     borderColor: '#BFDBFE',
-    headline: 'You\'re getting closer. Targeted investment closes the remaining gaps.',
-    description: 'The foundation is forming. A CRO with Standard scope could succeed here — but specific dimensions need attention before or during the first 90 days. The gaps are manageable if you name them and commit to closing them.',
-    croScope: 'CRO-Standard: defined scope with specific infrastructure investments',
+    headline: 'The foundation is forming — but a self-assessment can only see so much.',
+    description: 'Your scores suggest the building blocks are in place, but the dimensions that look "ready" on a questionnaire are often the ones that surprise you in practice. A diagnostic conversation will reveal whether these scores hold up under scrutiny — and where the hidden risks are.',
+    croScope: 'To be determined — depends on what a deeper diagnostic reveals',
   },
   strong: {
-    label: 'Strong',
+    label: 'Strong Signals',
     color: '#10B981',
     bgColor: '#ECFDF5',
     borderColor: '#A7F3D0',
-    headline: 'Your company can support a full-scope CRO.',
-    description: 'The conditions for success are in place. The right CRO, matched to your stage and type, has a real chance here. Focus on the hire quality and CEO-CRO alignment.',
-    croScope: 'CRO-Full: end-to-end revenue leadership with real authority',
-  },
-  exceptional: {
-    label: 'Exceptional',
-    color: '#059669',
-    bgColor: '#ECFDF5',
-    borderColor: '#6EE7B7',
-    headline: 'You\'re in the top tier of CRO-readiness.',
-    description: 'The infrastructure, culture, and leadership alignment are mature. A Strategic CRO — board-level, architecturally focused — could thrive here. This is rare. Don\'t waste it on the wrong hire.',
-    croScope: 'CRO-Strategic: board-level revenue architect and organizational designer',
+    headline: 'Promising signals — but no self-assessment can give you the green light.',
+    description: 'Your answers suggest strong foundations across most dimensions. But a questionnaire captures what you believe about your organization, not necessarily what\'s true. The companies that score highest here are often the ones most surprised by what a deeper diagnostic uncovers. The next step isn\'t hiring — it\'s validating.',
+    croScope: 'To be determined — a diagnostic conversation will define the right scope',
   },
 };
 

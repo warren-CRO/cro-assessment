@@ -5,7 +5,7 @@ export type HireReason = 'first-cro' | 'replacing' | 'restructuring' | 'explorin
 
 export type DimensionId = 'D1' | 'D2' | 'D3' | 'D4' | 'D5' | 'D6' | 'D7' | 'D8' | 'D9' | 'D10';
 
-export type ReadinessBand = 'critical' | 'limited' | 'moderate' | 'strong' | 'exceptional';
+export type ReadinessBand = 'critical' | 'limited' | 'moderate' | 'strong';
 
 export type ReadinessLayer = 'strategic' | 'operational' | 'foundational';
 
