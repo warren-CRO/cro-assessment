@@ -10,9 +10,7 @@ export default function ReadinessLanding() {
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <img src="/logo-white.png" alt="The CRO Collective" className="h-7" />
           <a
-            href="https://thecrocollective.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:info@thecrocollective.com?subject=Website%20Inquiry"
             className="text-sm text-white/80 border border-white/30 rounded-lg px-4 py-1.5 hover:border-white hover:text-white transition-colors"
           >
             Contact Us

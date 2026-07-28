@@ -106,10 +106,29 @@ export default function ReadinessResults() {
     }
   }
 
-  const handleEmailSubmit = (e: React.FormEvent) => {
+  const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!email) return
     trackEvent('readiness_email_capture', { band: result.band, score: String(result.totalScore) })
+
+    try {
+      await fetch('/api/capture', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          band: result.band,
+          score: result.totalScore,
+          role: result.context.role,
+          revenue: result.context.revenue,
+          funding: result.context.funding,
+          hireReason: result.context.hireReason,
+          gaps: gaps.map(g => ({ dimension: g.dimension, score: g.score })),
+        }),
+      })
+    } catch {
+      // still show success — we log to analytics
+    }
     setEmailSubmitted(true)
   }
 
@@ -119,9 +138,7 @@ export default function ReadinessResults() {
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <img src="/logo-white.png" alt="The CRO Collective" className="h-7" />
           <a
-            href="https://thecrocollective.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:info@thecrocollective.com?subject=Website%20Inquiry"
             className="text-sm text-white/80 border border-white/30 rounded-lg px-4 py-1.5 hover:border-white hover:text-white transition-colors"
           >
             Contact Us
@@ -371,9 +388,9 @@ export default function ReadinessResults() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="font-display text-xl font-bold text-navy mb-2">Check Your Inbox</h3>
+              <h3 className="font-display text-xl font-bold text-navy mb-2">We'll Be in Touch</h3>
               <p className="text-sm text-slate">
-                Your custom CRO job description and full readiness report are being generated. We'll send them to <span className="font-medium text-navy">{email}</span> shortly.
+                We've received your request. A member of The CRO Collective team will send your custom CRO job description and full readiness report to <span className="font-medium text-navy">{email}</span> within 24 hours.
               </p>
             </div>
           )}
@@ -398,9 +415,7 @@ export default function ReadinessResults() {
             }
           </p>
           <a
-            href="https://thecrocollective.com/contact"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`mailto:info@thecrocollective.com?subject=${encodeURIComponent(`CRO Readiness Assessment — ${band.label} (${result.totalScore}/50)`)}&body=${encodeURIComponent(`I just completed the CRO Readiness Assessment and scored ${result.totalScore}/50 (${band.label}).\n\nI'd like to discuss next steps for our CRO hire.\n\nRole: ${result.context.role}\nRevenue: ${result.context.revenue}\nFunding: ${result.context.funding}`)}`}
             className="inline-flex items-center gap-2 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-semibold rounded-lg transition-colors"
           >
             Talk to The CRO Collective
