@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowLeft, ArrowRight, CheckCircle, Users, Compass, Shield, Building2, Mic } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CheckCircle, Users, Compass, Shield, Building2, Mic, Download } from 'lucide-react'
 
 const offerings = [
   {
@@ -17,6 +17,7 @@ const offerings = [
       'Three-Layer Readiness Architecture mapping',
     ],
     cta: { label: 'Take the Free Assessment', href: '/readiness/assess' },
+    decks: [{ label: 'Program Overview', href: '/decks/CRO-Readiness-Overview.pdf' }],
     color: '#00CCF5',
   },
   {
@@ -32,6 +33,10 @@ const offerings = [
       'Cohort-based, live online, application-only admission',
       'Faculty: Warren Zenna, Derek Sather, Janelle Pierini',
       'Applied work on your company from session one — not theory',
+    ],
+    decks: [
+      { label: '2026 Program Overview', href: '/decks/CRO-Accelerator-2026-Overview.pdf' },
+      { label: 'Foundations Sales Deck', href: '/decks/CRO-Accelerator-Foundations-Sales-Deck.pdf' },
     ],
     color: '#1075FB',
   },
@@ -51,6 +56,10 @@ const offerings = [
       'Ongoing advisory during the search process',
     ],
     tiers: 'Three tiers based on depth and duration.',
+    decks: [
+      { label: 'Engagement Overview', href: '/decks/CRO-Transition-Engagement-Overview.pdf' },
+      { label: 'Sales Deck', href: '/decks/CRO-In-Transition-Sales-Deck.pdf' },
+    ],
     color: '#02033C',
   },
   {
@@ -211,6 +220,21 @@ export default function Offerings() {
                     or email us
                   </a>
                 </div>
+                {o.decks && o.decks.length > 0 && (
+                  <div className="flex flex-wrap items-center gap-3 pt-3">
+                    {o.decks.map((d, i) => (
+                      <a
+                        key={i}
+                        href={d.href}
+                        download
+                        className="inline-flex items-center gap-1.5 text-sm text-blue hover:text-navy font-medium transition-colors"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        {d.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div className="border-b border-light-alt mt-10" />
