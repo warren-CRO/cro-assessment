@@ -20,10 +20,12 @@ export default function ReadinessWhitepaper() {
               Download PDF
             </button>
             <a
-              href="mailto:info@thecrocollective.com?subject=CRO%20Readiness%20White%20Paper%20Inquiry"
+              href="https://calendly.com/warren-zenna/cro-readiness-discovery"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-sm text-navy bg-cyan hover:bg-blue hover:text-white rounded-lg px-4 py-1.5 font-semibold transition-colors"
             >
-              Talk to Us
+              Book a Call
             </a>
           </div>
         </div>
@@ -78,7 +80,7 @@ export default function ReadinessWhitepaper() {
             The assumption behind this pattern is that CRO success is a talent problem — find a better candidate, get a better outcome. Our research shows the opposite. <strong>The #1 predictor of CRO success is not the person. It's whether the company was structurally ready for one.</strong>
           </p>
           <Callout>
-            "Pandas don't fail in captivity because something is wrong with the panda. They fail because the environment doesn't support them. CROs are the same."
+            "Most people's perception of pandas comes from watching them in captivity — lethargic, antisocial, refusing to eat, failing to procreate. They look like dysfunctional animals. But watch a panda in its natural habitat and you see a completely different creature: social, animated, healthy, active, thriving. The panda was never the problem. The environment was. CROs suffer from the same misperception. We see them fail and assume it's a talent issue. It's not. It's that the organizational environment they were placed into was never built to support their success."
             <span className="block text-xs text-slate-light mt-2">— Warren Zenna, Founder, The CRO Collective</span>
           </Callout>
         </Section>
@@ -253,55 +255,48 @@ export default function ReadinessWhitepaper() {
 
           <div className="grid gap-6">
             <OfferingCard
-              tier="Free"
+              tier="Diagnostic"
               name="CRO Readiness Assessment"
-              price="$0"
-              description="Scored diagnostic across our 10-Dimension CRO-Readiness Framework. Identifies your readiness band, CRO type match, and specific gaps — in 5 minutes."
-              features={['10-dimension scoring', 'CRO type recommendation', 'Gap identification with recommendations', 'Custom CRO job description']}
+              price="Free"
+              description="The front door. A scored diagnostic across our proprietary 10-Dimension CRO-Readiness Framework that identifies your readiness band, maps you to the right CRO type, and pinpoints the specific gaps that would derail a hire."
+              features={['10-dimension organizational scoring', 'CRO type recommendation matched to your stage', 'Gap identification with prioritized recommendations', 'Readiness band classification (Critical → Advanced)']}
               cta={{ label: 'Take the Assessment', href: '/readiness' }}
             />
             <OfferingCard
-              tier="Self-Serve"
-              name="CRO OS Starter Kit"
-              price="$997"
-              description="Self-serve bundle of diagnostic frameworks, operational playbooks, and mini-courses. The preparation module for companies not yet ready for a full engagement."
-              features={['CRO type classification templates', 'Readiness assessment frameworks', 'Revenue architecture pattern guides', 'Leakage calculator and RACI templates']}
-            />
-            <OfferingCard
               tier="Flagship"
-              name="CRO OS Cohort"
-              price="$6,250 – $8,000"
-              description="8-week intensive with both founders. 15 participants max. Diagnosis meets architecture — the integrated prescription that no other program provides."
-              features={['Live CRO-Readiness Assessment (Week 1)', 'Failure Pattern Profile + AARR Score', 'Company-specific Revenue Architecture', 'Revenue Leakage Quantification', 'Integrated Prescription (Week 5 — the signature session)', '90-Day Execution Plan + Board Presentation']}
+              name="CRO Accelerator Course"
+              price="$6,800"
+              description="The industry's only comprehensive CRO development program. 10 core modules plus 10 elective modules, cohort-based, live online. Covers role identity, revenue architecture, financial modeling, GTM strategy, RevOps, board communication, team building, and change management."
+              features={['20 total modules (10 core + 10 elective) with capstone assessment', 'Cohort-based with application-only admission', 'Faculty: Warren Zenna, Derek Sather, Janelle Pierini', 'Pre-work required — live sessions operate at Apply level from minute one', 'Block A: CRO Foundation | Block B: Revenue Engine | Block C: Leadership & Execution']}
               highlight
             />
             <OfferingCard
-              tier="Ongoing"
-              name="CRO OS License"
-              price="$3,500/year"
-              description="Post-cohort retention: quarterly re-assessments, founder workshops, benchmark data, and peer alumni network. The operating system stays current."
-              features={['Quarterly live sessions with founders', 'Updated CRO-Readiness scores', 'Benchmark data and trend reporting', 'Peer alumni network']}
-            />
-            <OfferingCard
-              tier="Premium"
-              name="VIP Advisory"
-              price="$15,000/year"
-              description="Direct founder access with monthly 1:1 sessions, priority consulting queue, and License included. For CEOs and CROs who need a thinking partner."
-              features={['Monthly 1:1 with Warren or Derek', 'Priority consulting queue', 'Full License benefits included', 'CEO advisory and org dynamics support']}
+              tier="Individual"
+              name="CRO in Transition"
+              price="Custom"
+              description="A bespoke program for CROs proactively architecting career transitions — exiting roles and designing the next one. Distinct from the Accelerator (which develops skills) and the Readiness Assessment (which diagnoses companies). This develops the individual leader's career architecture."
+              features={['CRO Scorecard self-assessment (D1–D9)', 'Narrative architecture (60-sec and 30-sec elevator pitches)', 'Severance negotiation coaching', '"Compounding" role design — matching vertical, stage, PE backing, and growth trajectory', 'Ongoing advisory during the search process']}
             />
             <OfferingCard
               tier="Enterprise"
-              name="CRO Readiness Deep Diagnostic"
-              price="$45,000 – $75,000"
-              description="Full custom engagements — CRO-Readiness assessments, CEO advisory, revenue architecture builds, metric system design, and PE portfolio advisory."
-              features={['Comprehensive organizational assessment', 'Custom CRO role architecture', 'Revenue architecture design', 'PE portfolio-level advisory', 'Board presentation and stakeholder alignment']}
+              name="Interim CRO Bridge Program"
+              price="$150,000"
+              description="A 90-day fixed-fee engagement for companies in CRO transition — whether the seat is vacant, the current CRO is exiting, or the company needs operational leadership while they hire. TCC deploys an experienced interim CRO to stabilize revenue operations and architect the permanent role."
+              features={['90-day structured engagement with clear milestones', 'RARA diagnostic instrument (person-lens + org-lens)', 'Revenue stabilization and operational continuity', 'Permanent CRO role architecture and search support', 'Board-ready transition documentation']}
+            />
+            <OfferingCard
+              tier="Consulting"
+              name="CRO Readiness Architecture Implementation"
+              price="$50,000 – $200,000+"
+              description="Full-scope consulting engagement: baseline CRO-Readiness diagnostic, six-month transformation and alignment buildout, data and metrics analysis, and CRO hire and onboarding support. The complete infrastructure build for companies serious about getting the CRO role right."
+              features={['Phase 1: CRO Readiness Assessment baseline diagnostic (4–6 weeks)', 'Phase 2: Six-month implementation — transformation and alignment buildout', 'Phase 3: Data & metrics add-on — Salesforce, profitability, ICP, comp plan analysis', 'Phase 4: CRO hire and onboarding — role definition, search, coaching']}
             />
             <OfferingCard
               tier="Network"
-              name="CRO Roundtable Network"
-              price="By invitation"
-              description="Executive roundtable dinners in 14+ cities. Peer conversations among CROs, CEOs, and PE operating partners on the real challenges of the role."
-              features={['Curated peer groups (15–25 per event)', 'Quarterly cadence in major metros', 'No vendors, no pitches — peer exchange only', 'Pipeline to advisory and cohort programs']}
+              name="CRO Roundtable Sponsorship"
+              price="$7,500/event"
+              description="Executive roundtable dinners in 14+ cities across the US. Curated peer conversations among CROs, CEOs, and PE operating partners. Sponsorship puts your brand in front of the revenue leadership community at intimate, high-signal events."
+              features={['Premier sponsorship: exclusive brand presence at individual events', 'Founding Partner: $75,000/year annual strategic partnership', 'Curated peer groups (15–25 per event), no pitches', 'Pipeline to TCC advisory and accelerator programs']}
             />
           </div>
         </Section>
@@ -322,10 +317,12 @@ export default function ReadinessWhitepaper() {
               Take the Assessment
             </Link>
             <a
-              href="mailto:info@thecrocollective.com?subject=CRO%20Readiness%20White%20Paper%20—%20Schedule%20a%20Call"
+              href="https://calendly.com/warren-zenna/cro-readiness-discovery"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white hover:border-white font-display font-semibold rounded-lg transition-colors"
             >
-              Schedule a Call
+              Book a Discovery Call
             </a>
           </div>
         </div>

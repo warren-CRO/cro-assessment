@@ -11,6 +11,7 @@ import {
   Mail,
   Phone,
   FileText,
+  Calendar,
 } from 'lucide-react'
 import type {
   ContextAnswers,
@@ -430,17 +431,31 @@ export default function ReadinessResults() {
         </div>
 
         {/* Next Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <a
-            href={`mailto:info@thecrocollective.com?subject=${encodeURIComponent(`Schedule a Call — CRO Readiness (${band.label}, ${result.totalScore}/50)`)}&body=${encodeURIComponent(`I just completed the CRO Readiness Assessment and scored ${result.totalScore}/50 (${band.label}).\n\nI'd like to schedule a call to discuss next steps for our CRO hire.\n\nRole: ${result.context.role}\nRevenue: ${result.context.revenue}\nFunding: ${result.context.funding}`)}`}
+            href="https://calendly.com/warren-zenna/cro-readiness-discovery"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-start gap-4 p-6 rounded-xl border-2 border-cyan/30 bg-blue-light hover:border-cyan transition-colors group"
           >
             <div className="w-10 h-10 rounded-full bg-cyan/20 flex items-center justify-center shrink-0">
-              <Phone className="w-5 h-5 text-blue" />
+              <Calendar className="w-5 h-5 text-blue" />
             </div>
             <div>
-              <h4 className="font-display font-bold text-navy group-hover:text-blue transition-colors">Schedule a Call</h4>
-              <p className="text-sm text-slate mt-1">Talk directly with our team about your CRO readiness and next steps.</p>
+              <h4 className="font-display font-bold text-navy group-hover:text-blue transition-colors">Book a Discovery Call</h4>
+              <p className="text-sm text-slate mt-1">Pick a time that works for you. 30-minute call to discuss your CRO readiness.</p>
+            </div>
+          </a>
+          <a
+            href={`mailto:info@thecrocollective.com?subject=${encodeURIComponent(`Request a Call — CRO Readiness (${band.label}, ${result.totalScore}/50)`)}&body=${encodeURIComponent(`I just completed the CRO Readiness Assessment and scored ${result.totalScore}/50 (${band.label}).\n\nI'd like someone from your team to reach out to schedule a call.\n\nRole: ${result.context.role}\nRevenue: ${result.context.revenue}\nFunding: ${result.context.funding}`)}`}
+            className="flex items-start gap-4 p-6 rounded-xl border-2 border-light-alt hover:border-blue/30 transition-colors group"
+          >
+            <div className="w-10 h-10 rounded-full bg-navy/5 flex items-center justify-center shrink-0">
+              <Phone className="w-5 h-5 text-navy" />
+            </div>
+            <div>
+              <h4 className="font-display font-bold text-navy group-hover:text-blue transition-colors">Request a Call</h4>
+              <p className="text-sm text-slate mt-1">Prefer we reach out? We'll contact you to find a time.</p>
             </div>
           </a>
           <Link
@@ -452,7 +467,7 @@ export default function ReadinessResults() {
             </div>
             <div>
               <h4 className="font-display font-bold text-navy group-hover:text-blue transition-colors">Free White Paper</h4>
-              <p className="text-sm text-slate mt-1">Download our deep research on CRO readiness, failure patterns, and the full TCC offering suite.</p>
+              <p className="text-sm text-slate mt-1">Deep research on CRO readiness, failure patterns, and how TCC helps.</p>
             </div>
           </Link>
         </div>
@@ -477,10 +492,13 @@ export default function ReadinessResults() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href={`mailto:info@thecrocollective.com?subject=${encodeURIComponent(`CRO Readiness Assessment — ${band.label} (${result.totalScore}/50)`)}&body=${encodeURIComponent(`I just completed the CRO Readiness Assessment and scored ${result.totalScore}/50 (${band.label}).\n\nI'd like to discuss next steps for our CRO hire.\n\nRole: ${result.context.role}\nRevenue: ${result.context.revenue}\nFunding: ${result.context.funding}`)}`}
+              href="https://calendly.com/warren-zenna/cro-readiness-discovery"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-semibold rounded-lg transition-colors"
             >
-              Talk to The CRO Collective
+              <Calendar className="w-4 h-4" />
+              Book a Discovery Call
             </a>
             <Link
               to="/readiness/whitepaper"
