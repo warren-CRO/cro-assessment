@@ -343,10 +343,6 @@ function Badge({ children }: { children: React.ReactNode }) {
   )
 }
 
-function Section({ children }: { children: React.ReactNode }) {
-  return <div className="mb-10">{children}</div>
-}
-
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return <h2 className="font-display text-2xl font-bold mb-4 text-navy">{children}</h2>
 }
