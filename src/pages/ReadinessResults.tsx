@@ -28,9 +28,18 @@ import {
 } from '../data/readiness-scoring'
 import { dimensionQuestions } from '../data/readiness-questions'
 
+interface ContactInfo {
+  name: string
+  company: string
+  title: string
+  email: string
+  linkedin: string
+}
+
 interface Decoded {
   ctx: ContextAnswers
   dim: { id: DimensionId; score: number; label: string }[]
+  contact?: ContactInfo
 }
 
 declare global {
@@ -48,10 +57,18 @@ export default function ReadinessResults() {
   const [emailSubmitted, setEmailSubmitted] = useState(false)
   const [copied, setCopied] = useState(false)
 
-  const result = useMemo<ReadinessResult | null>(() => {
+  const decoded = useMemo<Decoded | null>(() => {
     try {
-      const parsed: Decoded = JSON.parse(decodeURIComponent(atob(encoded || '')))
-      const scores: DimensionScore[] = parsed.dim.map(d => {
+      return JSON.parse(decodeURIComponent(atob(encoded || '')))
+    } catch {
+      return null
+    }
+  }, [encoded])
+
+  const result = useMemo<ReadinessResult | null>(() => {
+    if (!decoded) return null
+    try {
+      const scores: DimensionScore[] = decoded.dim.map(d => {
         const q = dimensionQuestions.find(dq => dq.id === d.id)!
         return {
           id: d.id,
@@ -61,11 +78,13 @@ export default function ReadinessResults() {
           selectedLabel: d.label,
         }
       })
-      return computeReadinessResult(parsed.ctx, scores)
+      return computeReadinessResult(decoded.ctx, scores)
     } catch {
       return null
     }
-  }, [encoded])
+  }, [decoded])
+
+  const hasIntakeContact = !!decoded?.contact?.email
 
   if (!result) {
     return (
@@ -346,9 +365,21 @@ export default function ReadinessResults() {
           </div>
         )}
 
-        {/* Email Gate for Full Report + JD */}
+        {/* Email Gate / Intake Confirmation */}
         <div className="rounded-2xl border-2 border-cyan/30 bg-blue-light p-8 mb-8">
-          {!emailSubmitted ? (
+          {hasIntakeContact ? (
+            <div className="text-center py-4">
+              <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="font-display text-xl font-bold text-navy mb-2">We'll Be in Touch</h3>
+              <p className="text-sm text-slate">
+                We've received your assessment. A member of The CRO Collective team will reach out to <span className="font-medium text-navy">{decoded!.contact!.email}</span> within 24 hours with your custom CRO job description and full readiness report.
+              </p>
+            </div>
+          ) : !emailSubmitted ? (
             <>
               <div className="flex items-center gap-2 mb-3">
                 <Lock className="w-4 h-4 text-blue" />

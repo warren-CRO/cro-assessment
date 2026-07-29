@@ -1,14 +1,14 @@
 import { useState, useCallback, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import type { ReadinessRole, ReadinessRevenue, ReadinessFunding, HireReason, DimensionId, DimensionQuestion } from '../data/readiness-types'
 import {
   roleOptions, revenueOptions, fundingOptions, hireReasonOptions,
   getDimensionQuestions,
 } from '../data/readiness-questions'
 
-type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14
-const TOTAL_STEPS = 14
+type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15
+const TOTAL_STEPS = 15
 
 interface Answers {
   role?: ReadinessRole
@@ -121,8 +121,35 @@ export default function ReadinessAssess() {
           <QDimension
             key={currentDimension.id}
             dimension={currentDimension}
-            onSelect={(score, label) => advance('done', { dimensionEntry: { id: currentDimension.id, score, label } })}
+            onSelect={(score, label) => advance(15, { dimensionEntry: { id: currentDimension.id, score, label } })}
           />
+        )}
+        {step === 15 && (
+          <QIntake onSubmit={(contact) => {
+            setAnimating(true)
+            const final = answersRef.current
+            const encoded = btoa(encodeURIComponent(JSON.stringify({
+              ctx: { role: final.role, revenue: final.revenue, funding: final.funding, hireReason: final.hireReason },
+              dim: Array.from(final.dimensions.entries()).map(([id, v]) => ({ id, score: v.score, label: v.label })),
+              contact,
+            })))
+
+            fetch('/api/capture', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                ...contact,
+                role: final.role,
+                revenue: final.revenue,
+                funding: final.funding,
+                hireReason: final.hireReason,
+                dimensionCount: final.dimensions.size,
+              }),
+            }).catch(() => {})
+
+            trackEvent('readiness_intake', { email: contact.email })
+            setTimeout(() => navigate(`/readiness/results/${encoded}`), 300)
+          }} />
         )}
       </div>
     </div>
@@ -186,6 +213,66 @@ function QDimension({ dimension, onSelect }: { dimension: DimensionQuestion; onS
         ))}
       </div>
     </QuestionLayout>
+  )
+}
+
+interface ContactInfo {
+  name: string
+  company: string
+  title: string
+  email: string
+  linkedin: string
+}
+
+function QIntake({ onSubmit }: { onSubmit: (contact: ContactInfo) => void }) {
+  const [form, setForm] = useState<ContactInfo>({ name: '', company: '', title: '', email: '', linkedin: '' })
+  const update = (field: keyof ContactInfo, value: string) => setForm(prev => ({ ...prev, [field]: value }))
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    onSubmit(form)
+  }
+
+  return (
+    <QuestionLayout label="Almost Done" question="Where should we send your results?">
+      <form onSubmit={handleSubmit} className="grid gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <InputField label="Full Name" value={form.name} onChange={v => update('name', v)} required placeholder="Warren Zenna" />
+          <InputField label="Company" value={form.company} onChange={v => update('company', v)} required placeholder="Acme Corp" />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <InputField label="Title" value={form.title} onChange={v => update('title', v)} required placeholder="CEO" />
+          <InputField label="Email" value={form.email} onChange={v => update('email', v)} required type="email" placeholder="you@company.com" />
+        </div>
+        <InputField label="LinkedIn Profile" value={form.linkedin} onChange={v => update('linkedin', v)} placeholder="linkedin.com/in/yourprofile" />
+        <button
+          type="submit"
+          className="group mt-4 w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-semibold text-lg rounded-lg transition-all duration-200"
+        >
+          See My Results
+          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </button>
+        <p className="text-xs text-slate-light text-center">Your information is kept confidential. No spam, ever.</p>
+      </form>
+    </QuestionLayout>
+  )
+}
+
+function InputField({ label, value, onChange, required, type, placeholder }: {
+  label: string; value: string; onChange: (v: string) => void; required?: boolean; type?: string; placeholder?: string
+}) {
+  return (
+    <div>
+      <label className="block text-sm font-medium text-navy mb-1.5">{label}{required && <span className="text-coral ml-0.5">*</span>}</label>
+      <input
+        type={type || 'text'}
+        required={required}
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        placeholder={placeholder}
+        className="w-full px-4 py-3 rounded-xl border border-light-alt bg-white text-sm text-navy placeholder:text-slate-light/60 focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue transition-colors"
+      />
+    </div>
   )
 }
 

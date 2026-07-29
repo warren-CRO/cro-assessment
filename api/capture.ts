@@ -5,7 +5,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const { email, band, score, role, revenue, funding, hireReason, gaps } = req.body
+  const { email, name, company, title, linkedin, band, score, role, revenue, funding, hireReason, gaps, dimensionCount } = req.body
 
   if (!email) {
     return res.status(400).json({ error: 'Email required' })
@@ -14,27 +14,39 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const notifyEmail = process.env.NOTIFY_EMAIL || 'warren@thecrocollective.com'
   const resendKey = process.env.RESEND_API_KEY
 
+  const isIntake = !!dimensionCount
+  const subjectPrefix = isIntake ? 'CRO Assessment Intake' : 'CRO Assessment Lead'
+
   const gapList = gaps?.length
     ? gaps.map((g: { dimension: string; score: number }) => `  • ${g.dimension}: ${g.score}/5`).join('\n')
     : '  None identified'
 
-  const subject = `CRO Readiness Lead: ${email} — ${band} (${score}/50)`
-  const body = [
+  const subject = band
+    ? `${subjectPrefix}: ${name || email} — ${band} (${score}/50)`
+    : `${subjectPrefix}: ${name || email} (${company || 'unknown company'})`
+
+  const lines = [
     `New CRO Readiness Assessment submission:`,
     ``,
+    `Name: ${name || '—'}`,
+    `Company: ${company || '—'}`,
+    `Title: ${title || '—'}`,
     `Email: ${email}`,
-    `Band: ${band} (${score}/50)`,
-    `Role: ${role}`,
-    `Revenue: ${revenue}`,
-    `Funding: ${funding}`,
-    `Hire Reason: ${hireReason}`,
+    `LinkedIn: ${linkedin || '—'}`,
     ``,
-    `Gaps:`,
-    gapList,
-    ``,
-    `---`,
-    `Captured from cro-assessment.vercel.app`,
-  ].join('\n')
+    `Assessment Context:`,
+    `  Role: ${role || '—'}`,
+    `  Revenue: ${revenue || '—'}`,
+    `  Funding: ${funding || '—'}`,
+    `  Hire Reason: ${hireReason || '—'}`,
+  ]
+
+  if (band) {
+    lines.push(``, `Result: ${band} (${score}/50)`, ``, `Gaps:`, gapList)
+  }
+
+  lines.push(``, `---`, `Captured from cro-assessment.vercel.app`)
+  const body = lines.join('\n')
 
   if (resendKey) {
     try {
@@ -53,7 +65,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
   }
 
-  // Log to Vercel function logs as backup
   console.log(`[LEAD] ${subject}\n${body}`)
 
   return res.status(200).json({ ok: true })
