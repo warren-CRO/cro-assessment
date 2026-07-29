@@ -72,7 +72,7 @@ export default function ReadinessAssess() {
   const currentDimension = dimIndex >= 0 ? questions[dimIndex] : null
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F6F8FB' }}>
       <div className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center">
           <img src="/logo-white.png" alt="The CRO Collective" className="h-7" />
@@ -80,24 +80,27 @@ export default function ReadinessAssess() {
       </div>
 
       <div className="max-w-2xl mx-auto w-full px-4 pt-22">
-        <div className="flex items-center justify-between mb-2">
-          <button onClick={goBack} className="flex items-center gap-1 text-slate-light hover:text-navy text-sm transition-colors">
+        <div className="flex items-center justify-between mb-3">
+          <button onClick={goBack} className="flex items-center gap-1 text-slate-light hover:text-navy text-sm font-medium transition-colors">
             <ArrowLeft className="w-4 h-4" />
             Back
           </button>
-          <span className="text-sm text-slate-light">
+          <span className="text-sm font-display font-semibold text-navy/50">
             {step} of {TOTAL_STEPS}
           </span>
         </div>
-        <div className="h-1.5 bg-light-alt rounded-full overflow-hidden mb-12">
+        <div className="h-2 bg-white rounded-full overflow-hidden mb-10" style={{ boxShadow: '0 1px 3px rgba(2,3,60,0.06) inset' }}>
           <div
-            className="h-full bg-blue rounded-full transition-all duration-500 ease-out"
-            style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
+            className="h-full rounded-full transition-all duration-500 ease-out"
+            style={{
+              width: `${(step / TOTAL_STEPS) * 100}%`,
+              background: 'linear-gradient(90deg, #00CCF5, #1075FB)',
+            }}
           />
         </div>
       </div>
 
-      <div className={`max-w-2xl mx-auto w-full px-4 flex-1 flex flex-col justify-center transition-opacity duration-300 ${animating ? 'opacity-0' : 'opacity-100'}`}>
+      <div className={`max-w-2xl mx-auto w-full px-4 flex-1 flex flex-col justify-center pb-12 transition-opacity duration-300 ${animating ? 'opacity-0' : 'opacity-100'}`}>
         {step === 1 && (
           <QRole onSelect={r => { setRole(r); advance(2, { role: r }) }} />
         )}
@@ -235,25 +238,30 @@ function QIntake({ onSubmit }: { onSubmit: (contact: ContactInfo) => void }) {
 
   return (
     <QuestionLayout label="Almost Done" question="Where should we send your results?">
-      <form onSubmit={handleSubmit} className="grid gap-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <InputField label="Full Name" value={form.name} onChange={v => update('name', v)} required placeholder="Warren Zenna" />
-          <InputField label="Company" value={form.company} onChange={v => update('company', v)} required placeholder="Acme Corp" />
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <InputField label="Title" value={form.title} onChange={v => update('title', v)} required placeholder="CEO" />
-          <InputField label="Email" value={form.email} onChange={v => update('email', v)} required type="email" placeholder="you@company.com" />
-        </div>
-        <InputField label="LinkedIn Profile" value={form.linkedin} onChange={v => update('linkedin', v)} placeholder="linkedin.com/in/yourprofile" />
-        <button
-          type="submit"
-          className="group mt-4 w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-semibold text-lg rounded-lg transition-all duration-200"
-        >
-          See My Results
-          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-        </button>
-        <p className="text-xs text-slate-light text-center">Your information is kept confidential. No spam, ever.</p>
-      </form>
+      <div
+        className="rounded-2xl bg-white p-8"
+        style={{ boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)' }}
+      >
+        <form onSubmit={handleSubmit} className="grid gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <InputField label="Full Name" value={form.name} onChange={v => update('name', v)} required placeholder="Warren Zenna" />
+            <InputField label="Company" value={form.company} onChange={v => update('company', v)} required placeholder="Acme Corp" />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <InputField label="Title" value={form.title} onChange={v => update('title', v)} required placeholder="CEO" />
+            <InputField label="Email" value={form.email} onChange={v => update('email', v)} required type="email" placeholder="you@company.com" />
+          </div>
+          <InputField label="LinkedIn Profile" value={form.linkedin} onChange={v => update('linkedin', v)} placeholder="linkedin.com/in/yourprofile" />
+          <button
+            type="submit"
+            className="group mt-2 w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-bold text-lg rounded-xl transition-all duration-200"
+          >
+            See My Results
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </button>
+          <p className="text-xs text-slate-light text-center">Your information is kept confidential. No spam, ever.</p>
+        </form>
+      </div>
     </QuestionLayout>
   )
 }
@@ -263,14 +271,14 @@ function InputField({ label, value, onChange, required, type, placeholder }: {
 }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-navy mb-1.5">{label}{required && <span className="text-coral ml-0.5">*</span>}</label>
+      <label className="block text-sm font-display font-semibold text-navy mb-1.5">{label}{required && <span className="text-coral ml-0.5">*</span>}</label>
       <input
         type={type || 'text'}
         required={required}
         value={value}
         onChange={e => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full px-4 py-3 rounded-xl border border-light-alt bg-white text-sm text-navy placeholder:text-slate-light/60 focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue transition-colors"
+        className="w-full px-4 py-3.5 rounded-xl border-2 border-light-alt bg-white text-sm text-navy placeholder:text-slate-light/60 focus:outline-none focus:border-blue focus:ring-2 focus:ring-blue/20 transition-all"
       />
     </div>
   )
@@ -279,8 +287,8 @@ function InputField({ label, value, onChange, required, type, placeholder }: {
 function QuestionLayout({ label, question, children }: { label: string; question: string; children: React.ReactNode }) {
   return (
     <div>
-      <p className="text-sm font-display font-semibold text-blue uppercase tracking-widest mb-3">{label}</p>
-      <h2 className="font-display text-2xl md:text-3xl font-bold mb-8 leading-snug text-navy">{question}</h2>
+      <p className="text-sm font-display font-semibold text-cyan uppercase tracking-widest mb-3">{label}</p>
+      <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold mb-8 leading-snug text-navy">{question}</h2>
       {children}
     </div>
   )
@@ -290,10 +298,11 @@ function OptionButton({ label, sublabel, onClick }: { label: string; sublabel?: 
   return (
     <button
       onClick={onClick}
-      className="w-full text-left px-5 py-4 rounded-xl border border-light-alt bg-white hover:border-blue hover:bg-blue-light transition-all duration-200 group"
+      className="w-full text-left px-6 py-5 rounded-2xl bg-white border-2 border-transparent hover:border-cyan transition-all duration-200 group"
+      style={{ boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 4px 16px rgba(2,3,60,0.04)' }}
     >
-      <span className="block font-medium text-navy group-hover:text-blue">{label}</span>
-      {sublabel && <span className="block text-sm text-slate-light mt-0.5">{sublabel}</span>}
+      <span className="block font-display font-semibold text-navy group-hover:text-blue transition-colors">{label}</span>
+      {sublabel && <span className="block text-sm text-slate-light mt-1">{sublabel}</span>}
     </button>
   )
 }

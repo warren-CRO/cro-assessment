@@ -53,6 +53,12 @@ function trackEvent(eventName: string, params?: Record<string, string | number>)
   window.gtag?.('event', eventName, params)
 }
 
+const cardStyle = {
+  backgroundColor: '#FFFFFF',
+  boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)',
+  border: '1px solid rgba(2,3,60,0.06)',
+}
+
 export default function ReadinessResults() {
   const { encoded } = useParams<{ encoded: string }>()
   const [expandedGaps, setExpandedGaps] = useState<Set<string>>(new Set())
@@ -91,7 +97,7 @@ export default function ReadinessResults() {
 
   if (!result) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F6F8FB' }}>
         <div className="text-center">
           <p className="text-navy font-display font-bold text-xl mb-2">Invalid assessment data</p>
           <Link to="/readiness" className="text-blue hover:underline">Take the assessment →</Link>
@@ -155,20 +161,22 @@ export default function ReadinessResults() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F6F8FB' }}>
       <nav className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <img src="/logo-white.png" alt="The CRO Collective" className="h-7" />
           <a
-            href="mailto:info@thecrocollective.com?subject=Website%20Inquiry"
-            className="text-sm text-white/80 border border-white/30 rounded-lg px-4 py-1.5 hover:border-white hover:text-white transition-colors"
+            href="https://calendly.com/warren-zenna/cro-readiness-discovery"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-navy bg-cyan hover:bg-blue hover:text-white rounded-lg px-4 py-1.5 font-semibold transition-colors"
           >
-            Contact Us
+            Book a Call
           </a>
         </div>
       </nav>
 
-      <div className="max-w-3xl mx-auto w-full px-4 pt-22 pb-16">
+      <div className="max-w-4xl mx-auto w-full px-4 pt-22 pb-16">
         <div className="flex items-center justify-between mb-8">
           <Link to="/readiness" className="flex items-center gap-1 text-slate-light hover:text-navy text-sm transition-colors">
             <ArrowLeft className="w-4 h-4" />
@@ -177,14 +185,14 @@ export default function ReadinessResults() {
           <div className="flex items-center gap-2">
             <button
               onClick={handleShare}
-              className="flex items-center gap-1.5 text-sm text-slate-light hover:text-navy border border-light-alt rounded-lg px-3 py-1.5 transition-colors"
+              className="flex items-center gap-1.5 text-sm text-slate-light hover:text-navy border border-light-alt rounded-lg px-3 py-1.5 transition-colors bg-white"
             >
               <Share2 className="w-3.5 h-3.5" />
               {copied ? 'Copied!' : 'Share'}
             </button>
             <Link
               to="/readiness/assess"
-              className="flex items-center gap-1.5 text-sm text-slate-light hover:text-navy border border-light-alt rounded-lg px-3 py-1.5 transition-colors"
+              className="flex items-center gap-1.5 text-sm text-slate-light hover:text-navy border border-light-alt rounded-lg px-3 py-1.5 transition-colors bg-white"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               Retake
@@ -194,8 +202,8 @@ export default function ReadinessResults() {
 
         {/* Score Hero */}
         <div
-          className="rounded-2xl p-8 mb-8 border-2"
-          style={{ backgroundColor: band.bgColor, borderColor: band.borderColor }}
+          className="rounded-2xl p-8 md:p-10 mb-8"
+          style={{ ...cardStyle, backgroundColor: band.bgColor, borderWidth: 2, borderStyle: 'solid', borderColor: band.borderColor }}
         >
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
             <div className="flex-1">
@@ -261,8 +269,8 @@ export default function ReadinessResults() {
         </div>
 
         {/* CRO Type */}
-        <div className="rounded-xl border border-light-alt p-6 mb-8">
-          <p className="text-xs font-display font-semibold text-blue uppercase tracking-widest mb-2">Recommended CRO Type</p>
+        <div className="rounded-2xl p-8 mb-8" style={cardStyle}>
+          <p className="text-xs font-display font-semibold text-cyan uppercase tracking-widest mb-2">Recommended CRO Type</p>
           <h3 className="font-display text-xl font-bold text-navy mb-2">{croType.type}</h3>
           <p className="text-sm text-slate leading-relaxed">{croType.description}</p>
           <p className="text-sm text-slate-light mt-3">
@@ -271,13 +279,13 @@ export default function ReadinessResults() {
         </div>
 
         {/* Dimension Breakdown by Layer */}
-        <div className="mb-8">
+        <div className="rounded-2xl p-8 mb-8" style={cardStyle}>
           <h2 className="font-display text-xl font-bold text-navy mb-6">Readiness Breakdown</h2>
           {(['strategic', 'operational', 'foundational'] as ReadinessLayer[]).map(layerKey => {
             const layer = layerConfig[layerKey]
             const layerScores = result.scores.filter(s => s.layer === layerKey)
             return (
-              <div key={layerKey} className="mb-6">
+              <div key={layerKey} className="mb-6 last:mb-0">
                 <div className="flex items-center gap-2 mb-3">
                   <h3 className="font-display font-semibold text-sm text-navy">{layer.label} Layer</h3>
                   <span className="text-xs text-slate-light">— {layer.description}</span>
@@ -323,7 +331,7 @@ export default function ReadinessResults() {
 
         {/* Gaps & Recommendations */}
         {gaps.length > 0 && (
-          <div className="mb-8">
+          <div className="rounded-2xl p-8 mb-8" style={cardStyle}>
             <h2 className="font-display text-xl font-bold text-navy mb-2">Before You Hire</h2>
             <p className="text-sm text-slate-light mb-6">
               {gaps.length === 1
@@ -369,7 +377,7 @@ export default function ReadinessResults() {
         )}
 
         {/* Email Gate / Intake Confirmation */}
-        <div className="rounded-2xl border-2 border-cyan/30 bg-blue-light p-8 mb-8">
+        <div className="rounded-2xl p-8 mb-8" style={{ ...cardStyle, backgroundColor: '#E8F4FB', borderColor: 'rgba(0,204,245,0.3)', borderWidth: 2 }}>
           {hasIntakeContact ? (
             <div className="text-center py-4">
               <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
@@ -385,8 +393,8 @@ export default function ReadinessResults() {
           ) : !emailSubmitted ? (
             <>
               <div className="flex items-center gap-2 mb-3">
-                <Lock className="w-4 h-4 text-blue" />
-                <p className="text-xs font-display font-semibold text-blue uppercase tracking-widest">Full Report + Custom JD</p>
+                <Lock className="w-4 h-4 text-cyan" />
+                <p className="text-xs font-display font-semibold text-cyan uppercase tracking-widest">Full Report + Custom JD</p>
               </div>
               <h3 className="font-display text-xl font-bold text-navy mb-2">
                 Get Your Custom CRO Job Description
@@ -408,7 +416,7 @@ export default function ReadinessResults() {
                 </div>
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-blue hover:bg-navy-mid text-white font-display font-semibold text-sm rounded-lg transition-colors shrink-0"
+                  className="px-6 py-3 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-bold text-sm rounded-lg transition-colors shrink-0"
                 >
                   Generate My JD
                 </button>
@@ -436,45 +444,42 @@ export default function ReadinessResults() {
             href="https://calendly.com/warren-zenna/cro-readiness-discovery"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-start gap-4 p-6 rounded-xl border-2 border-cyan/30 bg-blue-light hover:border-cyan transition-colors group"
+            className="rounded-2xl p-6 group transition-all hover:-translate-y-0.5"
+            style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}
           >
-            <div className="w-10 h-10 rounded-full bg-cyan/20 flex items-center justify-center shrink-0">
-              <Calendar className="w-5 h-5 text-blue" />
+            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mb-4">
+              <Calendar className="w-5 h-5 text-cyan" />
             </div>
-            <div>
-              <h4 className="font-display font-bold text-navy group-hover:text-blue transition-colors">Book a Discovery Call</h4>
-              <p className="text-sm text-slate mt-1">Pick a time that works for you. 30-minute call to discuss your CRO readiness.</p>
-            </div>
+            <h4 className="font-display font-bold text-white group-hover:text-cyan transition-colors">Book a Discovery Call</h4>
+            <p className="text-sm text-white/60 mt-1">Pick a time that works for you. 30-minute call to discuss your CRO readiness.</p>
           </a>
           <a
             href={`mailto:info@thecrocollective.com?subject=${encodeURIComponent(`Request a Call — CRO Readiness (${band.label}, ${result.totalScore}/50)`)}&body=${encodeURIComponent(`I just completed the CRO Readiness Assessment and scored ${result.totalScore}/50 (${band.label}).\n\nI'd like someone from your team to reach out to schedule a call.\n\nRole: ${result.context.role}\nRevenue: ${result.context.revenue}\nFunding: ${result.context.funding}`)}`}
-            className="flex items-start gap-4 p-6 rounded-xl border-2 border-light-alt hover:border-blue/30 transition-colors group"
+            className="rounded-2xl p-6 group transition-all hover:-translate-y-0.5"
+            style={cardStyle}
           >
-            <div className="w-10 h-10 rounded-full bg-navy/5 flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-full bg-navy/5 flex items-center justify-center mb-4">
               <Phone className="w-5 h-5 text-navy" />
             </div>
-            <div>
-              <h4 className="font-display font-bold text-navy group-hover:text-blue transition-colors">Request a Call</h4>
-              <p className="text-sm text-slate mt-1">Prefer we reach out? We'll contact you to find a time.</p>
-            </div>
+            <h4 className="font-display font-bold text-navy group-hover:text-blue transition-colors">Request a Call</h4>
+            <p className="text-sm text-slate mt-1">Prefer we reach out? We'll contact you to find a time.</p>
           </a>
           <Link
             to="/readiness/whitepaper"
-            className="flex items-start gap-4 p-6 rounded-xl border-2 border-light-alt hover:border-blue/30 transition-colors group"
+            className="rounded-2xl p-6 group transition-all hover:-translate-y-0.5"
+            style={cardStyle}
           >
-            <div className="w-10 h-10 rounded-full bg-navy/5 flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-full bg-navy/5 flex items-center justify-center mb-4">
               <FileText className="w-5 h-5 text-navy" />
             </div>
-            <div>
-              <h4 className="font-display font-bold text-navy group-hover:text-blue transition-colors">Free White Paper</h4>
-              <p className="text-sm text-slate mt-1">Deep research on CRO readiness, failure patterns, and how TCC helps.</p>
-            </div>
+            <h4 className="font-display font-bold text-navy group-hover:text-blue transition-colors">Free White Paper</h4>
+            <p className="text-sm text-slate mt-1">Deep research on CRO readiness, failure patterns, and how TCC helps.</p>
           </Link>
         </div>
 
         {/* CTA */}
-        <div className="rounded-2xl p-8 text-center" style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}>
-          <h3 className="font-display text-2xl font-bold text-white mb-3">
+        <div className="rounded-2xl p-8 md:p-10 text-center" style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}>
+          <h3 className="font-display text-2xl md:text-3xl font-bold text-white mb-3">
             {result.band === 'critical' || result.band === 'limited'
               ? 'Fix the Structure Before You Hire'
               : result.band === 'moderate'
@@ -495,14 +500,14 @@ export default function ReadinessResults() {
               href="https://calendly.com/warren-zenna/cro-readiness-discovery"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-semibold rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-bold rounded-lg transition-colors"
             >
               <Calendar className="w-4 h-4" />
               Book a Discovery Call
             </a>
             <Link
               to="/readiness/whitepaper"
-              className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white hover:border-white font-display font-semibold rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white hover:border-white font-display font-bold rounded-lg transition-colors"
             >
               <FileText className="w-4 h-4" />
               Download White Paper
@@ -511,15 +516,16 @@ export default function ReadinessResults() {
         </div>
 
         {/* Footer */}
-        <div className="mt-12 pt-6 border-t border-light-alt text-center text-sm text-slate-light">
+        <div className="mt-10 pt-6 border-t border-light-alt text-center text-sm text-slate-light">
           <p>
             This assessment is based on The CRO Collective's proprietary 10-Dimension CRO-Readiness Framework,
             developed from 25 years of revenue leadership experience and validated across hundreds of CRO engagements.
           </p>
           <p className="mt-2">
-            A diagnostic tool by{' '}
+            &copy; {new Date().getFullYear()} The CRO Collective. All rights reserved.
+            {' · '}
             <a href="https://thecrocollective.com" target="_blank" rel="noopener noreferrer" className="text-blue hover:underline">
-              The CRO Collective
+              thecrocollective.com
             </a>
           </p>
         </div>
