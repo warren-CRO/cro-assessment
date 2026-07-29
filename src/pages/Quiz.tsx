@@ -66,7 +66,7 @@ export default function Quiz() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F6F8FB' }}>
       {/* Nav */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center">
@@ -88,7 +88,7 @@ export default function Quiz() {
         {/* Progress bar */}
         <div className="h-1.5 bg-light-alt rounded-full overflow-hidden mb-12">
           <div
-            className="h-full bg-blue rounded-full transition-all duration-500 ease-out"
+            className="h-full bg-cyan rounded-full transition-all duration-500 ease-out"
             style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
           />
         </div>
@@ -209,7 +209,7 @@ function Q5({ onSelect }: { onSelect: (i: Intent) => void }) {
 function QuestionLayout({ label, question, children }: { label: string; question: string; children: React.ReactNode }) {
   return (
     <div>
-      <p className="text-sm font-display font-semibold text-blue uppercase tracking-widest mb-3">{label}</p>
+      <p className="text-sm font-display font-semibold text-cyan uppercase tracking-widest mb-3">{label}</p>
       <h2 className="font-display text-2xl md:text-3xl font-bold mb-8 leading-snug text-navy">{question}</h2>
       {children}
     </div>
@@ -220,7 +220,8 @@ function OptionButton({ label, sublabel, onClick }: { label: string; sublabel?: 
   return (
     <button
       onClick={onClick}
-      className="w-full text-left px-5 py-4 rounded-xl border border-light-alt bg-white hover:border-blue hover:bg-blue-light transition-all duration-200 group"
+      className="w-full text-left px-5 py-4 rounded-2xl bg-white transition-all duration-200 group hover:translate-y-[-1px] hover:shadow-lg"
+      style={{ boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
     >
       <span className="block font-medium text-navy group-hover:text-blue">{label}</span>
       {sublabel && <span className="block text-sm text-slate-light mt-0.5">{sublabel}</span>}

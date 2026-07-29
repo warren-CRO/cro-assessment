@@ -111,18 +111,18 @@ export default function Results() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ backgroundColor: '#F6F8FB' }}>
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <img src="/logo-white.png" alt="The CRO Collective" className="h-7" />
           <a
-            href="https://thecrocollective.com"
+            href="https://calendly.com/warren-zenna/cro-readiness-discovery"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-white/80 border border-white/30 rounded-lg px-4 py-1.5 hover:border-white hover:text-white transition-colors"
+            className="text-sm text-navy bg-cyan hover:bg-blue hover:text-white rounded-lg px-4 py-1.5 font-semibold transition-colors"
           >
-            Contact Us
+            Book a Call
           </a>
         </div>
       </nav>
@@ -130,7 +130,7 @@ export default function Results() {
       {/* Hero section */}
       <div
         className="relative pt-24 pb-12 px-4 overflow-hidden"
-        style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}
+        style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}
       >
         <img
           src="/maze-60.png"
@@ -148,7 +148,7 @@ export default function Results() {
             <Badge>{fundingLabel}</Badge>
           </div>
 
-          <p className="text-sm font-display font-semibold text-blue uppercase tracking-widest mb-2">Your Pattern</p>
+          <p className="text-sm font-display font-semibold text-cyan uppercase tracking-widest mb-2">Your Pattern</p>
           <h1 className="font-display text-4xl md:text-5xl font-bold mb-4 text-white">{result.name}</h1>
           <p className="text-xl md:text-2xl text-white/70 leading-relaxed italic">{result.subtitle}</p>
 
@@ -165,38 +165,53 @@ export default function Results() {
       </div>
 
       {/* Content */}
-      <div className="bg-white px-4 py-12">
+      <div className="px-4 py-12">
         <div className="max-w-3xl mx-auto">
 
           {/* Early-stage caveat */}
           {result.caveat && (
-            <div className="mb-10 flex items-start gap-3 bg-blue-light rounded-xl p-5 border border-blue/20">
+            <div
+              className="mb-6 flex items-start gap-3 rounded-2xl p-6"
+              style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+            >
               <Info className="w-5 h-5 text-blue shrink-0 mt-0.5" />
               <p className="text-sm text-slate leading-relaxed">{result.caveat}</p>
             </div>
           )}
 
-          <Section>
+          <div
+            className="rounded-2xl p-6 md:p-8 mb-6"
+            style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+          >
             <p className="text-lg leading-relaxed text-slate">{result.description}</p>
-          </Section>
+          </div>
 
-          <Section>
+          <div
+            className="rounded-2xl p-6 md:p-8 mb-6"
+            style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+          >
             <SectionLabel>What's Really Going On</SectionLabel>
             {result.commentary.split('\n\n').map((p, i) => (
               <p key={i} className={`text-base leading-relaxed text-slate-light ${i > 0 ? 'mt-4' : ''}`}>{p}</p>
             ))}
-          </Section>
+          </div>
 
-          <Section>
+          <div
+            className="rounded-2xl p-6 md:p-8 mb-6"
+            style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+          >
             <SectionLabel>Why You're Stuck</SectionLabel>
-            <div className="border-l-4 border-blue bg-blue-light rounded-r-xl p-6">
+            <div className="border-l-4 border-cyan bg-light rounded-r-xl p-6">
               <p className="text-base leading-relaxed text-slate">{result.whyStuck}</p>
             </div>
-          </Section>
+          </div>
 
           {/* Secondary archetype notice */}
           {result.secondaryArchetype && (
-            <div className="mb-10 flex items-start gap-3 bg-light rounded-xl p-5 border border-light-alt">
+            <div
+              className="mb-6 flex items-start gap-3 rounded-2xl p-6"
+              style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+            >
               <AlertTriangle className="w-5 h-5 text-blue shrink-0 mt-0.5" />
               <div>
                 <p className="text-sm font-display font-semibold text-navy mb-1">Something else is happening too</p>
@@ -205,8 +220,11 @@ export default function Results() {
             </div>
           )}
 
-          <div className="grid md:grid-cols-2 gap-6 mb-10">
-            <div className="border border-light-alt rounded-xl p-6 bg-light">
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div
+              className="rounded-2xl p-6"
+              style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+            >
               <div className="flex items-center gap-2 mb-4">
                 <OctagonAlert className="w-5 h-5 text-red-500" />
                 <h3 className="font-display text-xl font-bold text-navy">Stop Doing</h3>
@@ -221,7 +239,10 @@ export default function Results() {
               </ul>
             </div>
 
-            <div className="border border-light-alt rounded-xl p-6 bg-light">
+            <div
+              className="rounded-2xl p-6"
+              style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+            >
               <div className="flex items-center gap-2 mb-4">
                 <CircleCheck className="w-5 h-5 text-emerald-500" />
                 <h3 className="font-display text-xl font-bold text-navy">Start Doing</h3>
@@ -237,24 +258,27 @@ export default function Results() {
             </div>
           </div>
 
-          <Section>
+          <div
+            className="rounded-2xl p-6 md:p-8 mb-6"
+            style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+          >
             <SectionLabel>Key Insights</SectionLabel>
             <div className="space-y-4">
               {result.insights.map((insight, i) => (
-                <div key={i} className="flex gap-3 items-start bg-blue-light rounded-xl p-5">
-                  <Lightbulb className="w-5 h-5 text-blue shrink-0 mt-0.5" />
+                <div key={i} className="flex gap-3 items-start rounded-xl p-5" style={{ backgroundColor: '#F6F8FB' }}>
+                  <Lightbulb className="w-5 h-5 text-cyan shrink-0 mt-0.5" />
                   <p className="text-slate">{insight}</p>
                 </div>
               ))}
             </div>
-          </Section>
+          </div>
 
           {/* CTA */}
           <div
             className="rounded-2xl p-8 md:p-10 mb-10"
-            style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}
+            style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}
           >
-            <p className="text-blue text-sm font-display font-semibold uppercase tracking-widest mb-2">
+            <p className="text-cyan text-sm font-display font-semibold uppercase tracking-widest mb-2">
               Recommended Next Step: {result.offering}
             </p>
             <p className="text-lg text-white/80 leading-relaxed mb-6">{result.cta}</p>
@@ -264,7 +288,7 @@ export default function Results() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent('cta_book_session', { archetype: result.name, intent })}
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gold hover:bg-gold-dark text-navy font-display font-semibold rounded-lg transition-all duration-200"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-semibold rounded-lg transition-all duration-200"
               >
                 {ctaCopy.primary}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -297,11 +321,13 @@ export default function Results() {
             </Link>
           </div>
 
-          <div className="border-t border-light-alt pt-8 text-center text-sm text-slate-light">
-            Built by{' '}
-            <a href="https://thecrocollective.com" target="_blank" rel="noopener noreferrer" className="text-blue hover:underline">
-              The CRO Collective
-            </a>
+          <div className="pt-8 text-center text-sm text-slate-light">
+            &copy; {new Date().getFullYear()} The CRO Collective. All rights reserved.
+            <p className="mt-1">
+              <a href="https://thecrocollective.com" target="_blank" rel="noopener noreferrer" className="text-blue hover:underline">
+                thecrocollective.com
+              </a>
+            </p>
           </div>
         </div>
       </div>

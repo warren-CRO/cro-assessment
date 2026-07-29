@@ -96,7 +96,10 @@ function PatternCard({ detected }: { detected: DetectedPattern }) {
   const isHigh = detected.confidence === 'HIGH'
 
   return (
-    <div className="rounded-xl border border-light-alt overflow-hidden mb-6 print:break-inside-avoid">
+    <div
+      className="rounded-2xl overflow-hidden mb-6 print:break-inside-avoid"
+      style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+    >
       <div className={`px-6 py-4 flex items-center justify-between ${isHigh ? 'bg-red-50 border-b border-red-100' : 'bg-blue-light border-b border-blue/10'}`}>
         <div className="flex items-center gap-3">
           {isHigh
@@ -138,7 +141,7 @@ function PatternCard({ detected }: { detected: DetectedPattern }) {
           </ul>
         </div>
 
-        <div className="bg-light rounded-lg p-5">
+        <div className="rounded-lg p-5" style={{ background: '#FFFFFF', boxShadow: '0 1px 2px rgba(2,3,60,0.06)' }}>
           <h4 className="font-display font-semibold text-navy mb-3">Pre-close actions</h4>
           <ul className="space-y-2">
             {content.preCloseActions.map((item, i) => (
@@ -187,17 +190,17 @@ export default function PEResults() {
   const secondaryPatterns = showAllPatternsWarning ? patterns.slice(3) : []
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ backgroundColor: '#F6F8FB' }}>
       <nav className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10 print:hidden">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <img src="/logo-white.png" alt="The CRO Collective" className="h-7" />
           <a
-            href="https://thecrocollective.com"
+            href="https://calendly.com/warren-zenna/cro-readiness-discovery"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-white/80 border border-white/30 rounded-lg px-4 py-1.5 hover:border-white hover:text-white transition-colors"
+            className="text-sm text-navy bg-cyan hover:bg-blue hover:text-white rounded-lg px-4 py-1.5 font-semibold transition-colors"
           >
-            Contact Us
+            Book a Call
           </a>
         </div>
       </nav>
@@ -205,7 +208,7 @@ export default function PEResults() {
       {/* Hero */}
       <div
         className="relative pt-24 pb-12 px-4 overflow-hidden"
-        style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}
+        style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}
       >
         <img
           src="/maze-60.png"
@@ -217,7 +220,7 @@ export default function PEResults() {
             <ArrowLeft className="w-4 h-4" /> Back to Diagnostic
           </Link>
 
-          <p className="text-sm font-display font-semibold text-blue uppercase tracking-widest mb-2">
+          <p className="text-sm font-display font-semibold text-cyan uppercase tracking-widest mb-2">
             Risk Brief
           </p>
           <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-3 text-white">
@@ -253,7 +256,7 @@ export default function PEResults() {
       </div>
 
       {/* Content */}
-      <div className="bg-white px-4 py-12">
+      <div className="px-4 py-12">
         <div className="max-w-3xl mx-auto">
 
           {/* Snapshot */}
@@ -261,25 +264,27 @@ export default function PEResults() {
             <SectionLabel icon={<Shield className="w-5 h-5 text-blue" />}>
               Revenue Infrastructure Snapshot
             </SectionLabel>
-            <p className="text-base leading-relaxed text-slate">
-              {buildSnapshotNarrative(answers)}
-            </p>
-            {noCRO && (
-              <div className="mt-4 flex items-start gap-3 bg-blue-light rounded-xl p-5 border border-blue/20">
-                <Info className="w-5 h-5 text-blue shrink-0 mt-0.5" />
-                <p className="text-sm text-slate leading-relaxed">
-                  No commercial leader is currently in place. This brief focuses on
-                  environment readiness — the structural conditions any future CRO
-                  hire will walk into. The patterns below describe the environment,
-                  not the person.
-                </p>
-              </div>
-            )}
+            <div className="rounded-2xl p-6" style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}>
+              <p className="text-base leading-relaxed text-slate">
+                {buildSnapshotNarrative(answers)}
+              </p>
+              {noCRO && (
+                <div className="mt-4 flex items-start gap-3 bg-blue-light rounded-xl p-5 border border-blue/20">
+                  <Info className="w-5 h-5 text-blue shrink-0 mt-0.5" />
+                  <p className="text-sm text-slate leading-relaxed">
+                    No commercial leader is currently in place. This brief focuses on
+                    environment readiness — the structural conditions any future CRO
+                    hire will walk into. The patterns below describe the environment,
+                    not the person.
+                  </p>
+                </div>
+              )}
+            </div>
           </Section>
 
           {/* All-patterns warning */}
           {showAllPatternsWarning && (
-            <div className="mb-8 flex items-start gap-3 bg-red-50 rounded-xl p-5 border border-red-200">
+            <div className="mb-8 flex items-start gap-3 bg-red-50 rounded-2xl p-5" style={{ boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(239,71,111,0.15)' }}>
               <AlertTriangle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
               <div>
                 <p className="text-sm font-display font-semibold text-navy mb-1">Multiple structural risks detected</p>
@@ -324,7 +329,11 @@ export default function PEResults() {
               {compounds.map(c => {
                 const content = compoundContent[c.compound]
                 return (
-                  <div key={c.compound} className="mb-6 rounded-xl border-2 border-gold/40 overflow-hidden print:break-inside-avoid">
+                  <div
+                    key={c.compound}
+                    className="mb-6 rounded-2xl border-2 border-gold/40 overflow-hidden print:break-inside-avoid"
+                    style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)' }}
+                  >
                     <div className="bg-gold/10 px-6 py-4 border-b border-gold/20">
                       <h3 className="font-display text-lg font-bold text-navy">{content.peName}</h3>
                       <p className="text-xs text-slate-light mt-1">
@@ -350,10 +359,12 @@ export default function PEResults() {
               <SectionLabel icon={<CheckCircle className="w-5 h-5 text-emerald-500" />}>
                 Structural Assessment
               </SectionLabel>
-              <p className="text-base leading-relaxed text-slate mb-6">
-                {noPatternContent.snapshot}
-              </p>
-              <div className="bg-light rounded-xl p-6 border border-light-alt mb-4">
+              <div className="rounded-2xl p-6 mb-6" style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}>
+                <p className="text-base leading-relaxed text-slate">
+                  {noPatternContent.snapshot}
+                </p>
+              </div>
+              <div className="rounded-2xl p-6 mb-4" style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}>
                 <h4 className="font-display font-semibold text-navy mb-3">What to monitor</h4>
                 <ul className="space-y-2">
                   {noPatternContent.whatToMonitor.map((item, i) => (
@@ -373,9 +384,9 @@ export default function PEResults() {
           {/* CTA */}
           <div
             className="rounded-2xl p-8 md:p-10 mb-10 print:hidden"
-            style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}
+            style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}
           >
-            <p className="text-blue text-sm font-display font-semibold uppercase tracking-widest mb-2">
+            <p className="text-cyan text-sm font-display font-semibold uppercase tracking-widest mb-2">
               What to do next
             </p>
             <p className="text-lg text-white/80 leading-relaxed mb-6">
@@ -385,10 +396,10 @@ export default function PEResults() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="https://thecrocollective.com/contact"
+                href="https://calendly.com/warren-zenna/cro-readiness-discovery"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gold hover:bg-gold-dark text-navy font-display font-semibold rounded-lg transition-all duration-200"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-semibold rounded-lg transition-all duration-200"
               >
                 Talk to Us About Your Portfolio
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -416,10 +427,12 @@ export default function PEResults() {
           </div>
 
           <div className="border-t border-light-alt pt-8 text-center text-sm text-slate-light">
-            Built by{' '}
-            <a href="https://thecrocollective.com" target="_blank" rel="noopener noreferrer" className="text-blue hover:underline">
-              The CRO Collective
-            </a>
+            &copy; {new Date().getFullYear()} The CRO Collective. All rights reserved.
+            <p className="mt-1">
+              <a href="https://thecrocollective.com" target="_blank" rel="noopener noreferrer" className="text-blue hover:underline">
+                thecrocollective.com
+              </a>
+            </p>
           </div>
         </div>
       </div>
