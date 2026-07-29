@@ -97,8 +97,8 @@ function PatternCard({ detected }: { detected: DetectedPattern }) {
 
   return (
     <div
-      className="rounded-2xl overflow-hidden mb-6 print:break-inside-avoid"
-      style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+      className="rounded-[18px] overflow-hidden mb-6 print:break-inside-avoid"
+      style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)', border: '1px solid #E3E8F1', borderLeft: `4px solid ${isHigh ? '#ef4444' : '#3778F4'}` }}
     >
       <div className={`px-6 py-4 flex items-center justify-between ${isHigh ? 'bg-red-50 border-b border-red-100' : 'bg-blue-light border-b border-blue/10'}`}>
         <div className="flex items-center gap-3">
@@ -141,12 +141,12 @@ function PatternCard({ detected }: { detected: DetectedPattern }) {
           </ul>
         </div>
 
-        <div className="rounded-lg p-5" style={{ background: '#FFFFFF', boxShadow: '0 1px 2px rgba(2,3,60,0.06)' }}>
+        <div className="rounded-lg p-5" style={{ background: '#FFFFFF', boxShadow: '0 1px 2px rgba(0,22,77,0.05)' }}>
           <h4 className="font-display font-semibold text-navy mb-3">Pre-close actions</h4>
           <ul className="space-y-2">
             {content.preCloseActions.map((item, i) => (
               <li key={i} className="flex gap-3 text-sm text-slate-light">
-                <ShieldAlert className="w-4 h-4 text-gold-dark shrink-0 mt-0.5" />
+                <ShieldAlert className="w-4 h-4 text-[#FFBB00] shrink-0 mt-0.5" />
                 <span className="leading-relaxed">{item}</span>
               </li>
             ))}
@@ -190,7 +190,7 @@ export default function PEResults() {
   const secondaryPatterns = showAllPatternsWarning ? patterns.slice(3) : []
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F6F8FB' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#F4F6FA' }}>
       <nav className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10 print:hidden">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <img src="/logo-white.png" alt="The CRO Collective" className="h-7" />
@@ -198,7 +198,7 @@ export default function PEResults() {
             href="https://calendly.com/warren-zenna/cro-readiness-discovery"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-navy bg-cyan hover:bg-blue hover:text-white rounded-lg px-4 py-1.5 font-semibold transition-colors"
+            className="text-sm font-semibold text-[#00164D] bg-[#FFBB00] rounded-lg px-[18px] py-[9px] transition-colors hover:bg-white"
           >
             Book a Call
           </a>
@@ -208,7 +208,7 @@ export default function PEResults() {
       {/* Hero */}
       <div
         className="relative pt-24 pb-12 px-4 overflow-hidden"
-        style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}
+        style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}
       >
         <img
           src="/maze-60.png"
@@ -220,7 +220,7 @@ export default function PEResults() {
             <ArrowLeft className="w-4 h-4" /> Back to Diagnostic
           </Link>
 
-          <p className="text-sm font-display font-semibold text-cyan uppercase tracking-widest mb-2">
+          <p className="text-sm font-display font-semibold text-[#1AA0D0] uppercase tracking-widest mb-2">
             Risk Brief
           </p>
           <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-3 text-white">
@@ -237,7 +237,7 @@ export default function PEResults() {
                 {patterns.length} risk pattern{patterns.length > 1 ? 's' : ''} detected
               </span>
               {compounds.length > 0 && (
-                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/20 border border-gold/30 text-sm text-gold">
+                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFBB00]/16 border border-[#FFBB00]/42 text-sm text-[#FFBB00]">
                   {compounds.length} compound risk{compounds.length > 1 ? 's' : ''}
                 </span>
               )}
@@ -264,7 +264,7 @@ export default function PEResults() {
             <SectionLabel icon={<Shield className="w-5 h-5 text-blue" />}>
               Revenue Infrastructure Snapshot
             </SectionLabel>
-            <div className="rounded-2xl p-6" style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}>
+            <div className="rounded-[18px] p-6" style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)', border: '1px solid #E3E8F1' }}>
               <p className="text-base leading-relaxed text-slate">
                 {buildSnapshotNarrative(answers)}
               </p>
@@ -284,7 +284,7 @@ export default function PEResults() {
 
           {/* All-patterns warning */}
           {showAllPatternsWarning && (
-            <div className="mb-8 flex items-start gap-3 bg-red-50 rounded-2xl p-5" style={{ boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(239,71,111,0.15)' }}>
+            <div className="mb-8 flex items-start gap-3 bg-red-50 rounded-[18px] p-5" style={{ boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)', border: '1px solid rgba(239,71,111,0.15)' }}>
               <AlertTriangle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
               <div>
                 <p className="text-sm font-display font-semibold text-navy mb-1">Multiple structural risks detected</p>
@@ -323,7 +323,7 @@ export default function PEResults() {
           {/* Compound risks */}
           {compounds.length > 0 && (
             <Section>
-              <SectionLabel icon={<ShieldAlert className="w-5 h-5 text-gold-dark" />}>
+              <SectionLabel icon={<ShieldAlert className="w-5 h-5 text-[#FFBB00]" />}>
                 Compound Risk Alerts
               </SectionLabel>
               {compounds.map(c => {
@@ -331,10 +331,10 @@ export default function PEResults() {
                 return (
                   <div
                     key={c.compound}
-                    className="mb-6 rounded-2xl border-2 border-gold/40 overflow-hidden print:break-inside-avoid"
-                    style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)' }}
+                    className="mb-6 rounded-[18px] border-2 border-[#FFBB00] overflow-hidden print:break-inside-avoid"
+                    style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)' }}
                   >
-                    <div className="bg-gold/10 px-6 py-4 border-b border-gold/20">
+                    <div className="px-6 py-4" style={{ backgroundColor: 'rgba(255,187,0,0.12)', borderBottom: '1px solid rgba(255,187,0,0.35)' }}>
                       <h3 className="font-display text-lg font-bold text-navy">{content.peName}</h3>
                       <p className="text-xs text-slate-light mt-1">
                         Compound of: {patternContent[c.patterns[0]].peName} + {patternContent[c.patterns[1]].peName}
@@ -342,7 +342,7 @@ export default function PEResults() {
                     </div>
                     <div className="px-6 py-5 space-y-4">
                       <p className="text-slate leading-relaxed">{content.description}</p>
-                      <div className="bg-gold/5 rounded-lg p-4 border border-gold/20">
+                      <div className="rounded-lg p-4" style={{ backgroundColor: 'rgba(255,187,0,0.05)', border: '1px solid rgba(255,187,0,0.20)' }}>
                         <h4 className="font-display font-semibold text-navy mb-2 text-sm">Why this is worse than either pattern alone</h4>
                         <p className="text-sm text-slate-light leading-relaxed">{content.escalation}</p>
                       </div>
@@ -359,12 +359,12 @@ export default function PEResults() {
               <SectionLabel icon={<CheckCircle className="w-5 h-5 text-emerald-500" />}>
                 Structural Assessment
               </SectionLabel>
-              <div className="rounded-2xl p-6 mb-6" style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}>
+              <div className="rounded-[18px] p-6 mb-6" style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)', border: '1px solid #E3E8F1' }}>
                 <p className="text-base leading-relaxed text-slate">
                   {noPatternContent.snapshot}
                 </p>
               </div>
-              <div className="rounded-2xl p-6 mb-4" style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}>
+              <div className="rounded-[18px] p-6 mb-4" style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)', border: '1px solid #E3E8F1' }}>
                 <h4 className="font-display font-semibold text-navy mb-3">What to monitor</h4>
                 <ul className="space-y-2">
                   {noPatternContent.whatToMonitor.map((item, i) => (
@@ -383,10 +383,10 @@ export default function PEResults() {
 
           {/* CTA */}
           <div
-            className="rounded-2xl p-8 md:p-10 mb-10 print:hidden"
-            style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}
+            className="rounded-[18px] p-8 md:p-10 mb-10 print:hidden"
+            style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}
           >
-            <p className="text-cyan text-sm font-display font-semibold uppercase tracking-widest mb-2">
+            <p className="text-[#1AA0D0] text-sm font-display font-semibold uppercase tracking-widest mb-2">
               What to do next
             </p>
             <p className="text-lg text-white/80 leading-relaxed mb-6">
@@ -399,7 +399,7 @@ export default function PEResults() {
                 href="https://calendly.com/warren-zenna/cro-readiness-discovery"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-semibold rounded-lg transition-all duration-200"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#FFBB00] text-[#00164D] hover:bg-white font-display font-semibold rounded-[10px] transition-all duration-200"
               >
                 Talk to Us About Your Portfolio
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -408,7 +408,7 @@ export default function PEResults() {
                 href="/framework.html"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/30 text-white hover:border-white hover:text-white font-display font-semibold rounded-lg transition-all duration-200"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/35 text-white hover:border-white hover:bg-white/5 font-display font-semibold rounded-[10px] transition-all duration-200"
               >
                 Read the Revenue Leadership Framework
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -429,7 +429,7 @@ export default function PEResults() {
           <div className="border-t border-light-alt pt-8 text-center text-sm text-slate-light">
             &copy; {new Date().getFullYear()} The CRO Collective. All rights reserved.
             <p className="mt-1">
-              <a href="https://thecrocollective.com" target="_blank" rel="noopener noreferrer" className="text-blue hover:underline">
+              <a href="https://thecrocollective.com" target="_blank" rel="noopener noreferrer" className="text-[#1250C3] hover:underline">
                 thecrocollective.com
               </a>
             </p>

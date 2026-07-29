@@ -111,7 +111,7 @@ export default function Results() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F6F8FB' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#F4F6FA' }}>
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
@@ -120,7 +120,7 @@ export default function Results() {
             href="https://calendly.com/warren-zenna/cro-readiness-discovery"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-navy bg-cyan hover:bg-blue hover:text-white rounded-lg px-4 py-1.5 font-semibold transition-colors"
+            className="text-sm font-semibold text-[#00164D] bg-[#FFBB00] rounded-lg px-[18px] py-[9px] transition-colors hover:bg-white"
           >
             Book a Call
           </a>
@@ -130,7 +130,7 @@ export default function Results() {
       {/* Hero section */}
       <div
         className="relative pt-24 pb-12 px-4 overflow-hidden"
-        style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}
+        style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}
       >
         <img
           src="/maze-60.png"
@@ -148,16 +148,16 @@ export default function Results() {
             <Badge>{fundingLabel}</Badge>
           </div>
 
-          <p className="text-sm font-display font-semibold text-cyan uppercase tracking-widest mb-2">Your Pattern</p>
+          <p className="text-sm font-display font-semibold text-[#1AA0D0] uppercase tracking-widest mb-2">Your Pattern</p>
           <h1 className="font-display text-4xl md:text-5xl font-bold mb-4 text-white">{result.name}</h1>
           <p className="text-xl md:text-2xl text-white/70 leading-relaxed italic">{result.subtitle}</p>
 
           {/* Archetype shift notice */}
           {result.shiftedFrom && (
             <div className="mt-6 flex items-start gap-3 bg-white/10 rounded-xl p-4 border border-white/20">
-              <AlertTriangle className="w-5 h-5 text-gold shrink-0 mt-0.5" />
+              <AlertTriangle className="w-5 h-5 text-[#FFBB00] shrink-0 mt-0.5" />
               <p className="text-sm text-white/80 leading-relaxed">
-                <strong className="text-gold">Diagnosis refined:</strong> Based on what you told us about the duration, actions taken, and organizational awareness, the pattern that fits your situation is different than where you started. Your initial instinct pointed to one issue — the deeper picture reveals another.
+                <strong className="text-[#FFBB00]">Diagnosis refined:</strong> Based on what you told us about the duration, actions taken, and organizational awareness, the pattern that fits your situation is different than where you started. Your initial instinct pointed to one issue — the deeper picture reveals another.
               </p>
             </div>
           )}
@@ -171,8 +171,8 @@ export default function Results() {
           {/* Early-stage caveat */}
           {result.caveat && (
             <div
-              className="mb-6 flex items-start gap-3 rounded-2xl p-6"
-              style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+              className="mb-6 flex items-start gap-3 rounded-[18px] p-6"
+              style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)', border: '1px solid #E3E8F1' }}
             >
               <Info className="w-5 h-5 text-blue shrink-0 mt-0.5" />
               <p className="text-sm text-slate leading-relaxed">{result.caveat}</p>
@@ -180,15 +180,15 @@ export default function Results() {
           )}
 
           <div
-            className="rounded-2xl p-6 md:p-8 mb-6"
-            style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+            className="rounded-[18px] p-6 md:p-8 mb-6"
+            style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)', border: '1px solid #E3E8F1' }}
           >
             <p className="text-lg leading-relaxed text-slate">{result.description}</p>
           </div>
 
           <div
-            className="rounded-2xl p-6 md:p-8 mb-6"
-            style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+            className="rounded-[18px] p-6 md:p-8 mb-6"
+            style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)', border: '1px solid #E3E8F1' }}
           >
             <SectionLabel>What's Really Going On</SectionLabel>
             {result.commentary.split('\n\n').map((p, i) => (
@@ -197,11 +197,11 @@ export default function Results() {
           </div>
 
           <div
-            className="rounded-2xl p-6 md:p-8 mb-6"
-            style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+            className="rounded-[18px] p-6 md:p-8 mb-6"
+            style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)', border: '1px solid #E3E8F1' }}
           >
             <SectionLabel>Why You're Stuck</SectionLabel>
-            <div className="border-l-4 border-cyan bg-light rounded-r-xl p-6">
+            <div className="border-l-4 border-[#1AA0D0] bg-[#F4F6FA] rounded-r-xl p-6">
               <p className="text-base leading-relaxed text-slate">{result.whyStuck}</p>
             </div>
           </div>
@@ -209,8 +209,8 @@ export default function Results() {
           {/* Secondary archetype notice */}
           {result.secondaryArchetype && (
             <div
-              className="mb-6 flex items-start gap-3 rounded-2xl p-6"
-              style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+              className="mb-6 flex items-start gap-3 rounded-[18px] p-6"
+              style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)', border: '1px solid #E3E8F1' }}
             >
               <AlertTriangle className="w-5 h-5 text-blue shrink-0 mt-0.5" />
               <div>
@@ -222,8 +222,8 @@ export default function Results() {
 
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <div
-              className="rounded-2xl p-6"
-              style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+              className="rounded-[18px] p-6"
+              style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)', border: '1px solid #E3E8F1' }}
             >
               <div className="flex items-center gap-2 mb-4">
                 <OctagonAlert className="w-5 h-5 text-red-500" />
@@ -240,8 +240,8 @@ export default function Results() {
             </div>
 
             <div
-              className="rounded-2xl p-6"
-              style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+              className="rounded-[18px] p-6"
+              style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)', border: '1px solid #E3E8F1' }}
             >
               <div className="flex items-center gap-2 mb-4">
                 <CircleCheck className="w-5 h-5 text-emerald-500" />
@@ -259,14 +259,14 @@ export default function Results() {
           </div>
 
           <div
-            className="rounded-2xl p-6 md:p-8 mb-6"
-            style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+            className="rounded-[18px] p-6 md:p-8 mb-6"
+            style={{ background: '#FFFFFF', boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)', border: '1px solid #E3E8F1' }}
           >
             <SectionLabel>Key Insights</SectionLabel>
             <div className="space-y-4">
               {result.insights.map((insight, i) => (
-                <div key={i} className="flex gap-3 items-start rounded-xl p-5" style={{ backgroundColor: '#F6F8FB' }}>
-                  <Lightbulb className="w-5 h-5 text-cyan shrink-0 mt-0.5" />
+                <div key={i} className="flex gap-3 items-start rounded-xl p-5" style={{ backgroundColor: '#F4F6FA' }}>
+                  <Lightbulb className="w-5 h-5 text-[#1AA0D0] shrink-0 mt-0.5" />
                   <p className="text-slate">{insight}</p>
                 </div>
               ))}
@@ -275,10 +275,10 @@ export default function Results() {
 
           {/* CTA */}
           <div
-            className="rounded-2xl p-8 md:p-10 mb-10"
-            style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}
+            className="rounded-[18px] p-8 md:p-10 mb-10"
+            style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}
           >
-            <p className="text-cyan text-sm font-display font-semibold uppercase tracking-widest mb-2">
+            <p className="text-[#1AA0D0] text-sm font-display font-semibold uppercase tracking-widest mb-2">
               Recommended Next Step: {result.offering}
             </p>
             <p className="text-lg text-white/80 leading-relaxed mb-6">{result.cta}</p>
@@ -288,7 +288,7 @@ export default function Results() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent('cta_book_session', { archetype: result.name, intent })}
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-semibold rounded-lg transition-all duration-200"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#FFBB00] text-[#00164D] hover:bg-white font-display font-semibold rounded-[10px] transition-all duration-200"
               >
                 {ctaCopy.primary}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -298,7 +298,7 @@ export default function Results() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent('cta_read_framework', { archetype: result.name, intent })}
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/30 text-white hover:border-white hover:text-white font-display font-semibold rounded-lg transition-all duration-200"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/35 text-white hover:border-white hover:bg-white/5 font-display font-semibold rounded-[10px] transition-all duration-200"
               >
                 {ctaCopy.secondary}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -324,7 +324,7 @@ export default function Results() {
           <div className="pt-8 text-center text-sm text-slate-light">
             &copy; {new Date().getFullYear()} The CRO Collective. All rights reserved.
             <p className="mt-1">
-              <a href="https://thecrocollective.com" target="_blank" rel="noopener noreferrer" className="text-blue hover:underline">
+              <a href="https://thecrocollective.com" target="_blank" rel="noopener noreferrer" className="text-[#1250C3] hover:underline">
                 thecrocollective.com
               </a>
             </p>

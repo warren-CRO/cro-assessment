@@ -72,7 +72,7 @@ export default function ReadinessAssess() {
   const currentDimension = dimIndex >= 0 ? questions[dimIndex] : null
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F6F8FB' }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F4F6FA' }}>
       <div className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center">
           <img src="/logo-white.png" alt="The CRO Collective" className="h-7" />
@@ -89,12 +89,12 @@ export default function ReadinessAssess() {
             {step} of {TOTAL_STEPS}
           </span>
         </div>
-        <div className="h-2 bg-white rounded-full overflow-hidden mb-10" style={{ boxShadow: '0 1px 3px rgba(2,3,60,0.06) inset' }}>
+        <div className="h-2 bg-[#E3E8F1] rounded-full overflow-hidden mb-10">
           <div
             className="h-full rounded-full transition-all duration-500 ease-out"
             style={{
               width: `${(step / TOTAL_STEPS) * 100}%`,
-              background: 'linear-gradient(90deg, #00CCF5, #1075FB)',
+              background: 'linear-gradient(90deg, #3778F4, #FFBB00)',
             }}
           />
         </div>
@@ -163,8 +163,8 @@ function QRole({ onSelect }: { onSelect: (role: ReadinessRole) => void }) {
   return (
     <QuestionLayout label="About Your Company" question="Which best describes you?">
       <div className="grid gap-3">
-        {roleOptions.map(opt => (
-          <OptionButton key={opt.id} label={opt.label} sublabel={opt.description} onClick={() => onSelect(opt.id)} />
+        {roleOptions.map((opt, i) => (
+          <OptionButton key={opt.id} label={opt.label} sublabel={opt.description} letterKey={String.fromCharCode(65 + i)} onClick={() => onSelect(opt.id)} />
         ))}
       </div>
     </QuestionLayout>
@@ -175,8 +175,8 @@ function QRevenue({ onSelect }: { onSelect: (revenue: ReadinessRevenue) => void 
   return (
     <QuestionLayout label="About Your Company" question="What's your company's annual revenue?">
       <div className="grid gap-3">
-        {revenueOptions.map(opt => (
-          <OptionButton key={opt.id} label={opt.label} onClick={() => onSelect(opt.id)} />
+        {revenueOptions.map((opt, i) => (
+          <OptionButton key={opt.id} label={opt.label} letterKey={String.fromCharCode(65 + i)} onClick={() => onSelect(opt.id)} />
         ))}
       </div>
     </QuestionLayout>
@@ -187,8 +187,8 @@ function QFunding({ onSelect }: { onSelect: (funding: ReadinessFunding) => void 
   return (
     <QuestionLayout label="About Your Company" question="How is the company funded?">
       <div className="grid gap-3">
-        {fundingOptions.map(opt => (
-          <OptionButton key={opt.id} label={opt.label} onClick={() => onSelect(opt.id)} />
+        {fundingOptions.map((opt, i) => (
+          <OptionButton key={opt.id} label={opt.label} letterKey={String.fromCharCode(65 + i)} onClick={() => onSelect(opt.id)} />
         ))}
       </div>
     </QuestionLayout>
@@ -199,8 +199,8 @@ function QHireReason({ onSelect }: { onSelect: (reason: HireReason) => void }) {
   return (
     <QuestionLayout label="About Your Company" question="Why are you considering a CRO?">
       <div className="grid gap-3">
-        {hireReasonOptions.map(opt => (
-          <OptionButton key={opt.id} label={opt.label} sublabel={opt.description} onClick={() => onSelect(opt.id)} />
+        {hireReasonOptions.map((opt, i) => (
+          <OptionButton key={opt.id} label={opt.label} sublabel={opt.description} letterKey={String.fromCharCode(65 + i)} onClick={() => onSelect(opt.id)} />
         ))}
       </div>
     </QuestionLayout>
@@ -212,7 +212,7 @@ function QDimension({ dimension, onSelect }: { dimension: DimensionQuestion; onS
     <QuestionLayout label={dimension.dimension} question={dimension.question}>
       <div className="grid gap-3">
         {dimension.options.map((opt, i) => (
-          <OptionButton key={i} label={opt.label} onClick={() => onSelect(opt.score, opt.label)} />
+          <OptionButton key={i} label={opt.label} letterKey={String.fromCharCode(65 + i)} onClick={() => onSelect(opt.score, opt.label)} />
         ))}
       </div>
     </QuestionLayout>
@@ -240,7 +240,7 @@ function QIntake({ onSubmit }: { onSubmit: (contact: ContactInfo) => void }) {
     <QuestionLayout label="Almost Done" question="Where should we send your results?">
       <div
         className="rounded-2xl bg-white p-8"
-        style={{ boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)' }}
+        style={{ boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)' }}
       >
         <form onSubmit={handleSubmit} className="grid gap-5">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -254,7 +254,7 @@ function QIntake({ onSubmit }: { onSubmit: (contact: ContactInfo) => void }) {
           <InputField label="LinkedIn Profile" value={form.linkedin} onChange={v => update('linkedin', v)} placeholder="linkedin.com/in/yourprofile" />
           <button
             type="submit"
-            className="group mt-2 w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-bold text-lg rounded-xl transition-all duration-200"
+            className="group mt-2 w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#FFBB00] hover:bg-white text-[#00164D] font-display font-bold text-lg rounded-xl transition-all duration-200"
           >
             See My Results
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -278,7 +278,7 @@ function InputField({ label, value, onChange, required, type, placeholder }: {
         value={value}
         onChange={e => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full px-4 py-3.5 rounded-xl border-2 border-light-alt bg-white text-sm text-navy placeholder:text-slate-light/60 focus:outline-none focus:border-blue focus:ring-2 focus:ring-blue/20 transition-all"
+        className="w-full px-4 py-3.5 rounded-xl border-2 border-[#E3E8F1] bg-white text-sm text-navy placeholder:text-slate-light/60 focus:outline-none focus:border-[#3778F4] focus:ring-2 focus:ring-[#3778F4]/14 transition-all"
       />
     </div>
   )
@@ -287,22 +287,27 @@ function InputField({ label, value, onChange, required, type, placeholder }: {
 function QuestionLayout({ label, question, children }: { label: string; question: string; children: React.ReactNode }) {
   return (
     <div>
-      <p className="text-sm font-display font-semibold text-cyan uppercase tracking-widest mb-3">{label}</p>
+      <p className="text-sm font-display font-semibold text-[#1AA0D0] uppercase tracking-widest mb-3">{label}</p>
       <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold mb-8 leading-snug text-navy">{question}</h2>
       {children}
     </div>
   )
 }
 
-function OptionButton({ label, sublabel, onClick }: { label: string; sublabel?: string; onClick: () => void }) {
+function OptionButton({ label, sublabel, onClick, letterKey }: { label: string; sublabel?: string; onClick: () => void; letterKey: string }) {
   return (
     <button
       onClick={onClick}
-      className="w-full text-left px-6 py-5 rounded-2xl bg-white border-2 border-transparent hover:border-cyan transition-all duration-200 group"
-      style={{ boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 4px 16px rgba(2,3,60,0.04)' }}
+      className="w-full text-left flex items-start gap-4 px-5 py-4 rounded-[14px] bg-white transition-all duration-200 group hover:border-[#3778F4]"
+      style={{ boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)', border: '1.5px solid #E3E8F1' }}
     >
-      <span className="block font-display font-semibold text-navy group-hover:text-blue transition-colors">{label}</span>
-      {sublabel && <span className="block text-sm text-slate-light mt-1">{sublabel}</span>}
+      <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#F4F6FA] flex items-center justify-center font-display font-semibold text-sm text-[#00164D]">
+        {letterKey}
+      </span>
+      <div>
+        <span className="block font-medium text-[#00164D] group-hover:text-[#3778F4]">{label}</span>
+        {sublabel && <span className="block text-sm text-[#6B7280] mt-0.5">{sublabel}</span>}
+      </div>
     </button>
   )
 }

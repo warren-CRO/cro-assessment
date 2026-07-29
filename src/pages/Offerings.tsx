@@ -17,7 +17,7 @@ const offerings = [
     ],
     cta: { label: 'Take the Free Assessment', href: '/readiness/assess', internal: true },
     decks: [{ label: 'Program Overview', href: '/decks/CRO-Readiness-Overview.pdf' }],
-    color: '#00CCF5',
+    color: '#1AA0D0',
     variant: 'dark' as const,
   },
   {
@@ -37,7 +37,7 @@ const offerings = [
       { label: '2026 Program Overview', href: '/decks/CRO-Accelerator-2026-Overview.pdf' },
       { label: 'Foundations Sales Deck', href: '/decks/CRO-Accelerator-Foundations-Sales-Deck.pdf' },
     ],
-    color: '#1075FB',
+    color: '#3778F4',
     variant: 'light' as const,
   },
   {
@@ -59,7 +59,7 @@ const offerings = [
       { label: 'Engagement Overview', href: '/decks/CRO-Transition-Engagement-Overview.pdf' },
       { label: 'Sales Deck', href: '/decks/CRO-In-Transition-Sales-Deck.pdf' },
     ],
-    color: '#02033C',
+    color: '#00164D',
     variant: 'dark' as const,
   },
   {
@@ -77,7 +77,7 @@ const offerings = [
     ],
     tiers: 'Scoped by operational complexity and company stage.',
     decks: [{ label: 'Program Overview', href: '/decks/Interim-CRO-Bridge-Overview.pdf' }],
-    color: '#EF476F',
+    color: '#E4572E',
     variant: 'light' as const,
   },
   {
@@ -95,7 +95,7 @@ const offerings = [
     ],
     tiers: 'Scoped by operational complexity and company stage.',
     decks: [{ label: 'Program Overview', href: '/decks/CRO-Readiness-Overview.pdf' }],
-    color: '#033E8A',
+    color: '#0147C9',
     variant: 'dark' as const,
   },
   {
@@ -112,7 +112,7 @@ const offerings = [
       'Pipeline to TCC advisory and accelerator programs',
     ],
     decks: [{ label: 'Event Sponsorship One-Sheet', href: '/decks/CRO-Collective-Event-Sponsorship-One-Sheet.pdf' }],
-    color: '#1075FB',
+    color: '#3778F4',
     variant: 'light' as const,
   },
 ]
@@ -123,15 +123,15 @@ function OfferingCard({ o }: { o: typeof offerings[number] }) {
   return (
     <div
       id={o.id}
-      className="scroll-mt-20 rounded-2xl overflow-hidden"
+      className="scroll-mt-20 rounded-[18px] overflow-hidden"
       style={{
         background: isDark
-          ? 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)'
+          ? 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)'
           : '#FFFFFF',
         boxShadow: isDark
           ? 'none'
-          : '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)',
-        border: isDark ? 'none' : '1px solid rgba(2,3,60,0.06)',
+          : '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)',
+        border: isDark ? 'none' : '1px solid rgba(0,22,77,0.05)',
       }}
     >
       <div className="p-8 md:p-10">
@@ -140,16 +140,16 @@ function OfferingCard({ o }: { o: typeof offerings[number] }) {
           <div
             className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0"
             style={{
-              backgroundColor: isDark ? 'rgba(255,255,255,0.08)' : o.color + '12',
+              backgroundColor: isDark ? 'rgba(255,187,0,0.16)' : 'rgba(55,120,244,0.10)',
             }}
           >
-            <o.icon className="w-6 h-6" style={{ color: isDark ? '#00CCF5' : o.color }} />
+            <o.icon className="w-6 h-6" style={{ color: isDark ? '#FFBB00' : o.color }} />
           </div>
           <div>
             <h2 className={`font-display text-xl md:text-2xl font-bold ${isDark ? 'text-white' : 'text-navy'}`}>
               {o.name}
             </h2>
-            <p className={`text-sm font-medium mt-1 ${isDark ? 'text-cyan' : ''}`} style={isDark ? {} : { color: o.color }}>
+            <p className={`text-sm font-medium mt-1 ${isDark ? 'text-[#FFBB00]' : ''}`} style={isDark ? {} : { color: o.color }}>
               {o.tagline}
             </p>
           </div>
@@ -177,7 +177,7 @@ function OfferingCard({ o }: { o: typeof offerings[number] }) {
             <div key={i} className="flex items-start gap-2.5">
               <CheckCircle
                 className="w-4 h-4 shrink-0 mt-0.5"
-                style={{ color: isDark ? '#00CCF5' : o.color }}
+                style={{ color: isDark ? '#FFBB00' : o.color }}
               />
               <span className={`text-sm ${isDark ? 'text-white/80' : 'text-slate'}`}>{item}</span>
             </div>
@@ -197,7 +197,7 @@ function OfferingCard({ o }: { o: typeof offerings[number] }) {
           {o.cta ? (
             <Link
               to={o.cta.href}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-bold text-sm rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFBB00] hover:bg-white text-[#00164D] font-display font-bold text-sm rounded-lg transition-colors"
             >
               {o.cta.label}
               <ArrowRight className="w-4 h-4" />
@@ -207,7 +207,7 @@ function OfferingCard({ o }: { o: typeof offerings[number] }) {
               href="https://calendly.com/warren-zenna/cro-readiness-discovery"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-bold text-sm rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFBB00] hover:bg-white text-[#00164D] font-display font-bold text-sm rounded-lg transition-colors"
             >
               Book a Discovery Call
               <ExternalLink className="w-3.5 h-3.5" />
@@ -229,7 +229,7 @@ function OfferingCard({ o }: { o: typeof offerings[number] }) {
                   href={d.href}
                   download
                   className={`inline-flex items-center gap-1.5 text-sm font-medium transition-colors ${
-                    isDark ? 'text-cyan/70 hover:text-cyan' : 'text-blue hover:text-navy'
+                    isDark ? 'text-[#FFBB00]/70 hover:text-[#FFBB00]' : 'text-blue hover:text-navy'
                   }`}
                 >
                   <Download className="w-3.5 h-3.5" />
@@ -246,7 +246,7 @@ function OfferingCard({ o }: { o: typeof offerings[number] }) {
 
 export default function Offerings() {
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F6F8FB' }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F4F6FA' }}>
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
@@ -255,7 +255,7 @@ export default function Offerings() {
             href="https://calendly.com/warren-zenna/cro-readiness-discovery"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-navy bg-cyan hover:bg-blue hover:text-white rounded-lg px-4 py-1.5 font-semibold transition-colors"
+            className="text-sm font-semibold text-[#00164D] bg-[#FFBB00] rounded-lg px-[18px] py-[9px] transition-colors hover:bg-white"
           >
             Book a Call
           </a>
@@ -265,10 +265,10 @@ export default function Offerings() {
       {/* Hero */}
       <div
         className="relative px-4 pt-24 pb-20 overflow-hidden"
-        style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}
+        style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}
       >
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <p className="text-xs font-display font-semibold text-cyan uppercase tracking-[0.2em] mb-4">Our Services</p>
+          <p className="text-xs font-display font-semibold text-[#FFBB00] uppercase tracking-[0.2em] mb-4">Our Services</p>
           <h1 className="font-display text-3xl md:text-5xl font-bold text-white leading-tight mb-5">
             The Full CRO Lifecycle —<br />
             Diagnosis to Deployment
@@ -293,7 +293,7 @@ export default function Offerings() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="rounded-2xl p-10 md:p-12 text-center mt-8" style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}>
+        <div className="rounded-2xl p-10 md:p-12 text-center mt-8" style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}>
           <h2 className="font-display text-2xl md:text-3xl font-bold text-white mb-4">
             Not Sure Where to Start?
           </h2>
@@ -303,7 +303,7 @@ export default function Offerings() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/readiness/assess"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-bold rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#FFBB00] hover:bg-white text-[#00164D] font-display font-bold rounded-lg transition-colors"
             >
               Take the Assessment
               <ArrowRight className="w-4 h-4" />
@@ -312,7 +312,7 @@ export default function Offerings() {
               href="https://calendly.com/warren-zenna/cro-readiness-discovery"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white hover:border-white font-display font-bold rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 border border-white/35 text-white hover:border-white font-display font-bold rounded-lg transition-colors"
             >
               Book a Discovery Call
             </a>

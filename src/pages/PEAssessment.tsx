@@ -99,7 +99,7 @@ export default function PEAssessment() {
   if (!currentQuestion) return null
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F6F8FB' }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F4F6FA' }}>
       <div className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center">
           <img src="/logo-white.png" alt="The CRO Collective" className="h-7" />
@@ -116,31 +116,36 @@ export default function PEAssessment() {
             {stepIndex + 1} of {totalSteps}
           </span>
         </div>
-        <div className="h-1.5 bg-light-alt rounded-full overflow-hidden mb-12">
+        <div className="h-2 bg-[#E3E8F1] rounded-full overflow-hidden mb-12">
           <div
-            className="h-full bg-cyan rounded-full transition-all duration-500 ease-out"
-            style={{ width: `${((stepIndex + 1) / totalSteps) * 100}%` }}
+            className="h-full rounded-full transition-all duration-500 ease-out"
+            style={{ width: `${((stepIndex + 1) / totalSteps) * 100}%`, background: 'linear-gradient(90deg, #3778F4, #FFBB00)' }}
           />
         </div>
       </div>
 
       <div className={`max-w-2xl mx-auto w-full px-4 flex-1 flex flex-col justify-center transition-opacity duration-300 ${animating ? 'opacity-0' : 'opacity-100'}`}>
         <div>
-          <p className="text-sm font-display font-semibold text-cyan uppercase tracking-widest mb-3">
+          <p className="text-sm font-display font-semibold text-[#1AA0D0] uppercase tracking-widest mb-3">
             Question {stepIndex + 1}
           </p>
           <h2 className="font-display text-2xl md:text-3xl font-bold mb-8 leading-snug text-navy">
             {currentQuestion.question}
           </h2>
           <div className="grid gap-3">
-            {currentQuestion.options.map(opt => (
+            {currentQuestion.options.map((opt, i) => (
               <button
                 key={opt.id}
                 onClick={() => advance(opt.id)}
-                className="w-full text-left px-5 py-4 rounded-2xl bg-white transition-all duration-200 group hover:translate-y-[-1px]"
-                style={{ boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+                className="w-full text-left flex items-start gap-4 px-5 py-4 rounded-[14px] bg-white transition-all duration-200 group hover:border-[#3778F4]"
+                style={{ boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)', border: '1.5px solid #E3E8F1' }}
               >
-                <span className="block font-medium text-navy group-hover:text-blue">{opt.label}</span>
+                <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#F4F6FA] flex items-center justify-center font-display font-semibold text-sm text-[#00164D]">
+                  {String.fromCharCode(65 + i)}
+                </span>
+                <div>
+                  <span className="block font-medium text-[#00164D] group-hover:text-[#3778F4]">{opt.label}</span>
+                </div>
               </button>
             ))}
           </div>

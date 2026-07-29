@@ -7,14 +7,14 @@ export default function ReadinessWhitepaper() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F6F8FB' }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F4F6FA' }}>
       <nav className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10 print:hidden">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <img src="/logo-white.png" alt="The CRO Collective" className="h-7" />
           <div className="flex items-center gap-3">
             <button
               onClick={handleDownload}
-              className="flex items-center gap-1.5 text-sm text-white/80 border border-white/30 rounded-lg px-4 py-1.5 hover:border-white hover:text-white transition-colors"
+              className="flex items-center gap-1.5 text-sm text-white/80 border border-white/35 rounded-lg px-4 py-1.5 hover:border-white hover:text-white transition-colors"
             >
               <Download className="w-3.5 h-3.5" />
               Download PDF
@@ -23,7 +23,7 @@ export default function ReadinessWhitepaper() {
               href="https://calendly.com/warren-zenna/cro-readiness-discovery"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-navy bg-cyan hover:bg-blue hover:text-white rounded-lg px-4 py-1.5 font-semibold transition-colors"
+              className="text-sm font-semibold text-[#00164D] bg-[#FFBB00] rounded-lg px-[18px] py-[9px] transition-colors hover:bg-white"
             >
               Book a Call
             </a>
@@ -38,9 +38,9 @@ export default function ReadinessWhitepaper() {
         </Link>
 
         {/* Cover */}
-        <div className="rounded-2xl p-10 md:p-12 mb-10 text-center print:rounded-none print:p-0 print:mb-8" style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}>
+        <div className="rounded-2xl p-10 md:p-12 mb-10 text-center print:rounded-none print:p-0 print:mb-8" style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}>
           <img src="/logo-white.png" alt="The CRO Collective" className="h-8 mx-auto mb-6 print:h-6" />
-          <p className="text-xs font-display font-semibold text-cyan uppercase tracking-[0.2em] mb-4">Research White Paper</p>
+          <p className="text-xs font-display font-semibold text-[#FFBB00] uppercase tracking-[0.2em] mb-4">Research White Paper</p>
           <h1 className="font-display text-3xl md:text-5xl font-bold text-white leading-tight mb-4">
             The CRO Readiness Crisis:<br />
             Why 70% of CROs Fail and<br />
@@ -92,7 +92,7 @@ export default function ReadinessWhitepaper() {
           </p>
           <div
             className="rounded-2xl overflow-hidden mt-6"
-            style={{ boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)' }}
+            style={{ boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)' }}
           >
             <FailurePattern
               number={1}
@@ -143,7 +143,7 @@ export default function ReadinessWhitepaper() {
           <LayerBlock
             name="Strategic Layer"
             subtitle="The Ceiling"
-            color="#1075FB"
+            color="#FFBB00"
             dimensions={[
               { id: 'D1', name: 'CEO Alignment', desc: 'Does the CEO genuinely want a partner who owns end-to-end revenue?' },
               { id: 'D9', name: 'Board Support', desc: 'Will the board give the CRO enough runway to execute a transformation?' },
@@ -153,7 +153,7 @@ export default function ReadinessWhitepaper() {
           <LayerBlock
             name="Operational Layer"
             subtitle="The Execution Engine"
-            color="#00CCF5"
+            color="#3778F4"
             dimensions={[
               { id: 'D4', name: 'Process Maturity', desc: 'Are there processes to improve, or must the CRO build from scratch?' },
               { id: 'D5', name: 'Tech Stack Readiness', desc: 'Does the technology enable or obstruct revenue operations?' },
@@ -164,7 +164,7 @@ export default function ReadinessWhitepaper() {
           <LayerBlock
             name="Foundational Layer"
             subtitle="Must Be in Place First"
-            color="#02033C"
+            color="#1AA0D0"
             dimensions={[
               { id: 'D2', name: 'Data Maturity', desc: 'Can you make decisions based on the data that exists today?' },
               { id: 'D3', name: 'Team Readiness', desc: 'Does the revenue team have the capability to execute a CRO\'s strategy?' },
@@ -293,7 +293,7 @@ export default function ReadinessWhitepaper() {
           <div className="mt-8 text-center">
             <Link
               to="/readiness/offerings"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-bold text-sm rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFBB00] hover:bg-white text-[#00164D] font-display font-bold text-sm rounded-lg transition-colors"
             >
               Explore All Offerings
               <ArrowRight className="w-4 h-4" />
@@ -302,7 +302,7 @@ export default function ReadinessWhitepaper() {
         </Section>
 
         {/* CTA */}
-        <div className="rounded-2xl p-10 md:p-12 text-center mt-8 print:rounded-none print:border print:border-navy" style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}>
+        <div className="rounded-2xl p-10 md:p-12 text-center mt-8 print:rounded-none print:border print:border-navy" style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}>
           <h2 className="font-display text-2xl md:text-3xl font-bold text-white mb-4">
             Ready to Assess Your Organization?
           </h2>
@@ -312,7 +312,7 @@ export default function ReadinessWhitepaper() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/readiness/assess"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-bold rounded-lg transition-colors print:border print:border-white print:bg-transparent print:text-white"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#FFBB00] hover:bg-white text-[#00164D] font-display font-bold rounded-lg transition-colors print:border print:border-white print:bg-transparent print:text-white"
             >
               Take the Assessment
             </Link>
@@ -348,9 +348,9 @@ function Section({ title, children }: { title: string; children: React.ReactNode
     <div className="mb-10 print:mb-8">
       <div
         className="rounded-2xl bg-white p-8 md:p-10 print:rounded-none print:p-0 print:shadow-none"
-        style={{ boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)' }}
+        style={{ boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)' }}
       >
-        <h2 className="font-display text-2xl font-bold text-navy mb-6 pb-4 border-b border-light-alt">{title}</h2>
+        <h2 className="font-display text-2xl font-bold text-navy mb-6 pb-4" style={{ borderBottom: '1px solid #E3E8F1' }}>{title}</h2>
         <div className="text-slate leading-relaxed space-y-4">{children}</div>
       </div>
     </div>
@@ -364,7 +364,7 @@ function StatGrid({ stats }: { stats: { value: string; label: string }[] }) {
         <div
           key={s.label}
           className="text-center p-5 rounded-xl"
-          style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}
+          style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}
         >
           <div className="font-display text-2xl font-bold text-white">{s.value}</div>
           <div className="text-xs text-white/60 mt-1">{s.label}</div>
@@ -377,8 +377,8 @@ function StatGrid({ stats }: { stats: { value: string; label: string }[] }) {
 function Callout({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="my-6 p-6 rounded-2xl bg-blue-light border-l-4 border-blue text-sm text-slate leading-relaxed italic"
-      style={{ boxShadow: '0 1px 3px rgba(2,3,60,0.04), 0 4px 16px rgba(2,3,60,0.04)' }}
+      className="my-6 p-6 rounded-2xl bg-blue-light border-l-4 border-[#3778F4] text-sm text-slate leading-relaxed italic"
+      style={{ boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 4px 16px rgba(0,22,77,0.05)' }}
     >
       {children}
     </div>
@@ -388,7 +388,7 @@ function Callout({ children }: { children: React.ReactNode }) {
 function FailurePattern({ number, name, description, isFirst, isLast }: { number: number; name: string; description: string; isFirst?: boolean; isLast?: boolean }) {
   return (
     <div className={`flex gap-4 p-5 bg-white ${!isLast ? 'border-b border-light-alt' : ''} ${isFirst ? '' : ''}`}>
-      <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}>
+      <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}>
         <span className="text-white font-display font-bold text-sm">{number}</span>
       </div>
       <div>
@@ -406,7 +406,7 @@ function LayerBlock({ name, subtitle, color, dimensions }: {
   return (
     <div
       className="my-6 rounded-2xl border overflow-hidden"
-      style={{ borderColor: color + '40', boxShadow: '0 1px 3px rgba(2,3,60,0.04), 0 4px 16px rgba(2,3,60,0.04)' }}
+      style={{ borderColor: color + '40', boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 4px 16px rgba(0,22,77,0.05)' }}
     >
       <div className="px-5 py-3 flex items-center gap-2" style={{ backgroundColor: color + '10' }}>
         <div className="w-3 h-3 rounded-full" style={{ backgroundColor: color }} />
@@ -432,9 +432,9 @@ function CROTypeCard({ type, pct, desc }: { type: string; pct: string; desc: str
   return (
     <div
       className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-light-alt"
-      style={{ boxShadow: '0 1px 3px rgba(2,3,60,0.06), 0 4px 16px rgba(2,3,60,0.04)' }}
+      style={{ boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 4px 16px rgba(0,22,77,0.05)' }}
     >
-      <div className="px-2.5 py-1 rounded-lg bg-cyan text-navy text-xs font-display font-bold shrink-0">{pct}</div>
+      <div className="px-2.5 py-1 rounded-lg bg-[#FFBB00] text-[#00164D] text-xs font-display font-bold shrink-0">{pct}</div>
       <div>
         <h4 className="font-display font-bold text-navy text-sm">{type}</h4>
         <p className="text-xs text-slate-light mt-1 leading-relaxed">{desc}</p>
@@ -447,10 +447,10 @@ function PhaseCard({ number, title, items }: { number: number; title: string; it
   return (
     <div
       className="rounded-2xl bg-white border border-light-alt p-6"
-      style={{ boxShadow: '0 1px 3px rgba(2,3,60,0.06), 0 4px 16px rgba(2,3,60,0.04)' }}
+      style={{ boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 4px 16px rgba(0,22,77,0.05)' }}
     >
       <div className="flex items-center gap-3 mb-4">
-        <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}>
+        <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}>
           <span className="text-white font-display font-bold text-sm">{number}</span>
         </div>
         <h4 className="font-display font-bold text-navy">{title}</h4>
@@ -458,7 +458,7 @@ function PhaseCard({ number, title, items }: { number: number; title: string; it
       <div className="grid gap-2">
         {items.map((item, i) => (
           <div key={i} className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-cyan shrink-0 mt-0.5" />
+            <CheckCircle className="w-4 h-4 text-[#3778F4] shrink-0 mt-0.5" />
             <span className="text-sm text-slate">{item}</span>
           </div>
         ))}
@@ -472,9 +472,9 @@ function WPOffering({ name, line, anchor }: { name: string; line: string; anchor
     <Link
       to={`/readiness/offerings#${anchor}`}
       className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-light-alt hover:border-blue/30 transition-all group"
-      style={{ boxShadow: '0 1px 3px rgba(2,3,60,0.06), 0 4px 16px rgba(2,3,60,0.04)' }}
+      style={{ boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 4px 16px rgba(0,22,77,0.05)' }}
     >
-      <div className="w-1 h-full min-h-[40px] rounded-full bg-light-alt group-hover:bg-cyan transition-colors shrink-0" />
+      <div className="w-1 h-full min-h-[40px] rounded-full bg-light-alt group-hover:bg-[#3778F4] transition-colors shrink-0" />
       <div className="flex-1">
         <h4 className="font-display font-bold text-navy group-hover:text-blue transition-colors">{name}</h4>
         <p className="text-sm text-slate mt-1 leading-relaxed">{line}</p>

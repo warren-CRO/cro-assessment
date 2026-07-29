@@ -66,7 +66,7 @@ export default function Quiz() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F6F8FB' }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F4F6FA' }}>
       {/* Nav */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center">
@@ -86,10 +86,10 @@ export default function Quiz() {
           </span>
         </div>
         {/* Progress bar */}
-        <div className="h-1.5 bg-light-alt rounded-full overflow-hidden mb-12">
+        <div className="h-2 bg-[#E3E8F1] rounded-full overflow-hidden mb-12">
           <div
-            className="h-full bg-cyan rounded-full transition-all duration-500 ease-out"
-            style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
+            className="h-full rounded-full transition-all duration-500 ease-out"
+            style={{ width: `${(step / TOTAL_STEPS) * 100}%`, background: 'linear-gradient(90deg, #3778F4, #FFBB00)' }}
           />
         </div>
       </div>
@@ -113,8 +113,8 @@ function Q1({ onSelect }: { onSelect: (icp: ICP) => void }) {
   return (
     <QuestionLayout label="Question 1" question="Which best describes you?">
       <div className="grid gap-3">
-        {icpOptions.map(opt => (
-          <OptionButton key={opt.id} label={opt.label} sublabel={opt.description} onClick={() => onSelect(opt.id)} />
+        {icpOptions.map((opt, i) => (
+          <OptionButton key={opt.id} label={opt.label} sublabel={opt.description} letterKey={String.fromCharCode(65 + i)} onClick={() => onSelect(opt.id)} />
         ))}
       </div>
     </QuestionLayout>
@@ -127,7 +127,7 @@ function Q2({ icp, onSelect }: { icp: ICP; onSelect: (a: Archetype) => void }) {
     <QuestionLayout label="Question 2" question={fork.question}>
       <div className="grid gap-3">
         {fork.options.map((opt, i) => (
-          <OptionButton key={i} label={opt.label} onClick={() => onSelect(opt.archetype)} />
+          <OptionButton key={i} label={opt.label} letterKey={String.fromCharCode(65 + i)} onClick={() => onSelect(opt.archetype)} />
         ))}
       </div>
     </QuestionLayout>
@@ -138,8 +138,8 @@ function QDuration({ onSelect }: { onSelect: (d: Duration) => void }) {
   return (
     <QuestionLayout label="Question 3" question="How long has this been the situation?">
       <div className="grid gap-3">
-        {durationOptions.map(opt => (
-          <OptionButton key={opt.id} label={opt.label} onClick={() => onSelect(opt.id)} />
+        {durationOptions.map((opt, i) => (
+          <OptionButton key={opt.id} label={opt.label} letterKey={String.fromCharCode(65 + i)} onClick={() => onSelect(opt.id)} />
         ))}
       </div>
     </QuestionLayout>
@@ -150,8 +150,8 @@ function QPriorAction({ onSelect }: { onSelect: (p: PriorAction) => void }) {
   return (
     <QuestionLayout label="Question 4" question="What have you done about it so far?">
       <div className="grid gap-3">
-        {priorActionOptions.map(opt => (
-          <OptionButton key={opt.id} label={opt.label} onClick={() => onSelect(opt.id)} />
+        {priorActionOptions.map((opt, i) => (
+          <OptionButton key={opt.id} label={opt.label} letterKey={String.fromCharCode(65 + i)} onClick={() => onSelect(opt.id)} />
         ))}
       </div>
     </QuestionLayout>
@@ -162,8 +162,8 @@ function QOrgAwareness({ onSelect }: { onSelect: (o: OrgAwareness) => void }) {
   return (
     <QuestionLayout label="Question 5" question="Who else sees this as a problem?">
       <div className="grid gap-3">
-        {orgAwarenessOptions.map(opt => (
-          <OptionButton key={opt.id} label={opt.label} onClick={() => onSelect(opt.id)} />
+        {orgAwarenessOptions.map((opt, i) => (
+          <OptionButton key={opt.id} label={opt.label} letterKey={String.fromCharCode(65 + i)} onClick={() => onSelect(opt.id)} />
         ))}
       </div>
     </QuestionLayout>
@@ -174,8 +174,8 @@ function Q3({ onSelect }: { onSelect: (r: Revenue) => void }) {
   return (
     <QuestionLayout label="Question 6" question="What's your company's annual recurring revenue?">
       <div className="grid gap-3">
-        {revenueOptions.map(opt => (
-          <OptionButton key={opt.id} label={opt.label} onClick={() => onSelect(opt.id)} />
+        {revenueOptions.map((opt, i) => (
+          <OptionButton key={opt.id} label={opt.label} letterKey={String.fromCharCode(65 + i)} onClick={() => onSelect(opt.id)} />
         ))}
       </div>
     </QuestionLayout>
@@ -186,8 +186,8 @@ function Q4({ onSelect }: { onSelect: (f: Funding) => void }) {
   return (
     <QuestionLayout label="Question 7" question="How is the company funded?">
       <div className="grid gap-3">
-        {fundingOptions.map(opt => (
-          <OptionButton key={opt.id} label={opt.label} onClick={() => onSelect(opt.id)} />
+        {fundingOptions.map((opt, i) => (
+          <OptionButton key={opt.id} label={opt.label} letterKey={String.fromCharCode(65 + i)} onClick={() => onSelect(opt.id)} />
         ))}
       </div>
     </QuestionLayout>
@@ -198,8 +198,8 @@ function Q5({ onSelect }: { onSelect: (i: Intent) => void }) {
   return (
     <QuestionLayout label="Question 8" question="Where are you in thinking about this?">
       <div className="grid gap-3">
-        {intentOptions.map(opt => (
-          <OptionButton key={opt.id} label={opt.label} onClick={() => onSelect(opt.id)} />
+        {intentOptions.map((opt, i) => (
+          <OptionButton key={opt.id} label={opt.label} letterKey={String.fromCharCode(65 + i)} onClick={() => onSelect(opt.id)} />
         ))}
       </div>
     </QuestionLayout>
@@ -209,22 +209,27 @@ function Q5({ onSelect }: { onSelect: (i: Intent) => void }) {
 function QuestionLayout({ label, question, children }: { label: string; question: string; children: React.ReactNode }) {
   return (
     <div>
-      <p className="text-sm font-display font-semibold text-cyan uppercase tracking-widest mb-3">{label}</p>
+      <p className="text-sm font-display font-semibold text-[#1AA0D0] uppercase tracking-widest mb-3">{label}</p>
       <h2 className="font-display text-2xl md:text-3xl font-bold mb-8 leading-snug text-navy">{question}</h2>
       {children}
     </div>
   )
 }
 
-function OptionButton({ label, sublabel, onClick }: { label: string; sublabel?: string; onClick: () => void }) {
+function OptionButton({ label, sublabel, onClick, letterKey }: { label: string; sublabel?: string; onClick: () => void; letterKey: string }) {
   return (
     <button
       onClick={onClick}
-      className="w-full text-left px-5 py-4 rounded-2xl bg-white transition-all duration-200 group hover:translate-y-[-1px] hover:shadow-lg"
-      style={{ boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)', border: '1px solid rgba(2,3,60,0.06)' }}
+      className="w-full text-left flex items-start gap-4 px-5 py-4 rounded-[14px] bg-white transition-all duration-200 group hover:border-[#3778F4]"
+      style={{ boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)', border: '1.5px solid #E3E8F1' }}
     >
-      <span className="block font-medium text-navy group-hover:text-blue">{label}</span>
-      {sublabel && <span className="block text-sm text-slate-light mt-0.5">{sublabel}</span>}
+      <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#F4F6FA] flex items-center justify-center font-display font-semibold text-sm text-[#00164D]">
+        {letterKey}
+      </span>
+      <div>
+        <span className="block font-medium text-[#00164D] group-hover:text-[#3778F4]">{label}</span>
+        {sublabel && <span className="block text-sm text-[#6B7280] mt-0.5">{sublabel}</span>}
+      </div>
     </button>
   )
 }

@@ -55,8 +55,8 @@ function trackEvent(eventName: string, params?: Record<string, string | number>)
 
 const cardStyle = {
   backgroundColor: '#FFFFFF',
-  boxShadow: '0 1px 3px rgba(2,3,60,0.08), 0 8px 32px rgba(2,3,60,0.06)',
-  border: '1px solid rgba(2,3,60,0.06)',
+  boxShadow: '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)',
+  border: '1px solid #E3E8F1',
 }
 
 export default function ReadinessResults() {
@@ -97,7 +97,7 @@ export default function ReadinessResults() {
 
   if (!result) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F6F8FB' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F4F6FA' }}>
         <div className="text-center">
           <p className="text-navy font-display font-bold text-xl mb-2">Invalid assessment data</p>
           <Link to="/readiness" className="text-blue hover:underline">Take the assessment →</Link>
@@ -161,7 +161,7 @@ export default function ReadinessResults() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F6F8FB' }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F4F6FA' }}>
       <nav className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <img src="/logo-white.png" alt="The CRO Collective" className="h-7" />
@@ -169,7 +169,7 @@ export default function ReadinessResults() {
             href="https://calendly.com/warren-zenna/cro-readiness-discovery"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-navy bg-cyan hover:bg-blue hover:text-white rounded-lg px-4 py-1.5 font-semibold transition-colors"
+            className="text-sm font-semibold text-[#00164D] bg-[#FFBB00] rounded-lg px-[18px] py-[9px] transition-colors hover:bg-white"
           >
             Book a Call
           </a>
@@ -202,7 +202,7 @@ export default function ReadinessResults() {
 
         {/* Score Hero */}
         <div
-          className="rounded-2xl p-8 md:p-10 mb-8"
+          className="rounded-[18px] p-8 md:p-10 mb-8"
           style={{ ...cardStyle, backgroundColor: band.bgColor, borderWidth: 2, borderStyle: 'solid', borderColor: band.borderColor }}
         >
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
@@ -269,8 +269,8 @@ export default function ReadinessResults() {
         </div>
 
         {/* CRO Type */}
-        <div className="rounded-2xl p-8 mb-8" style={cardStyle}>
-          <p className="text-xs font-display font-semibold text-cyan uppercase tracking-widest mb-2">Recommended CRO Type</p>
+        <div className="rounded-[18px] p-8 mb-8" style={cardStyle}>
+          <p className="text-xs font-display font-semibold text-[#1AA0D0] uppercase tracking-widest mb-2">Recommended CRO Type</p>
           <h3 className="font-display text-xl font-bold text-navy mb-2">{croType.type}</h3>
           <p className="text-sm text-slate leading-relaxed">{croType.description}</p>
           <p className="text-sm text-slate-light mt-3">
@@ -279,7 +279,7 @@ export default function ReadinessResults() {
         </div>
 
         {/* Dimension Breakdown by Layer */}
-        <div className="rounded-2xl p-8 mb-8" style={cardStyle}>
+        <div className="rounded-[18px] p-8 mb-8" style={cardStyle}>
           <h2 className="font-display text-xl font-bold text-navy mb-6">Readiness Breakdown</h2>
           {(['strategic', 'operational', 'foundational'] as ReadinessLayer[]).map(layerKey => {
             const layer = layerConfig[layerKey]
@@ -331,7 +331,7 @@ export default function ReadinessResults() {
 
         {/* Gaps & Recommendations */}
         {gaps.length > 0 && (
-          <div className="rounded-2xl p-8 mb-8" style={cardStyle}>
+          <div className="rounded-[18px] p-8 mb-8" style={cardStyle}>
             <h2 className="font-display text-xl font-bold text-navy mb-2">Before You Hire</h2>
             <p className="text-sm text-slate-light mb-6">
               {gaps.length === 1
@@ -377,7 +377,7 @@ export default function ReadinessResults() {
         )}
 
         {/* Email Gate / Intake Confirmation */}
-        <div className="rounded-2xl p-8 mb-8" style={{ ...cardStyle, backgroundColor: '#E8F4FB', borderColor: 'rgba(0,204,245,0.3)', borderWidth: 2 }}>
+        <div className="rounded-[18px] p-8 mb-8" style={{ ...cardStyle, backgroundColor: 'rgba(255,187,0,0.06)', borderColor: '#FFBB00', borderWidth: 2 }}>
           {hasIntakeContact ? (
             <div className="text-center py-4">
               <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
@@ -393,8 +393,8 @@ export default function ReadinessResults() {
           ) : !emailSubmitted ? (
             <>
               <div className="flex items-center gap-2 mb-3">
-                <Lock className="w-4 h-4 text-cyan" />
-                <p className="text-xs font-display font-semibold text-cyan uppercase tracking-widest">Full Report + Custom JD</p>
+                <Lock className="w-4 h-4 text-[#1AA0D0]" />
+                <p className="text-xs font-display font-semibold text-[#1AA0D0] uppercase tracking-widest">Full Report + Custom JD</p>
               </div>
               <h3 className="font-display text-xl font-bold text-navy mb-2">
                 Get Your Custom CRO Job Description
@@ -416,7 +416,7 @@ export default function ReadinessResults() {
                 </div>
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-bold text-sm rounded-lg transition-colors shrink-0"
+                  className="px-6 py-3 bg-[#00164D] hover:bg-[#1250C3] text-white font-display font-bold text-sm rounded-lg transition-colors shrink-0"
                 >
                   Generate My JD
                 </button>
@@ -444,18 +444,18 @@ export default function ReadinessResults() {
             href="https://calendly.com/warren-zenna/cro-readiness-discovery"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-2xl p-6 group transition-all hover:-translate-y-0.5"
-            style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}
+            className="rounded-[18px] p-6 group transition-all hover:-translate-y-0.5"
+            style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}
           >
             <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mb-4">
-              <Calendar className="w-5 h-5 text-cyan" />
+              <Calendar className="w-5 h-5 text-[#FFBB00]" />
             </div>
-            <h4 className="font-display font-bold text-white group-hover:text-cyan transition-colors">Book a Discovery Call</h4>
+            <h4 className="font-display font-bold text-white group-hover:text-[#1AA0D0] transition-colors">Book a Discovery Call</h4>
             <p className="text-sm text-white/60 mt-1">Pick a time that works for you. 30-minute call to discuss your CRO readiness.</p>
           </a>
           <a
             href={`mailto:info@thecrocollective.com?subject=${encodeURIComponent(`Request a Call — CRO Readiness (${band.label}, ${result.totalScore}/50)`)}&body=${encodeURIComponent(`I just completed the CRO Readiness Assessment and scored ${result.totalScore}/50 (${band.label}).\n\nI'd like someone from your team to reach out to schedule a call.\n\nRole: ${result.context.role}\nRevenue: ${result.context.revenue}\nFunding: ${result.context.funding}`)}`}
-            className="rounded-2xl p-6 group transition-all hover:-translate-y-0.5"
+            className="rounded-[18px] p-6 group transition-all hover:-translate-y-0.5"
             style={cardStyle}
           >
             <div className="w-10 h-10 rounded-full bg-navy/5 flex items-center justify-center mb-4">
@@ -466,7 +466,7 @@ export default function ReadinessResults() {
           </a>
           <Link
             to="/readiness/whitepaper"
-            className="rounded-2xl p-6 group transition-all hover:-translate-y-0.5"
+            className="rounded-[18px] p-6 group transition-all hover:-translate-y-0.5"
             style={cardStyle}
           >
             <div className="w-10 h-10 rounded-full bg-navy/5 flex items-center justify-center mb-4">
@@ -478,7 +478,7 @@ export default function ReadinessResults() {
         </div>
 
         {/* CTA */}
-        <div className="rounded-2xl p-8 md:p-10 text-center" style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}>
+        <div className="rounded-[18px] p-8 md:p-10 text-center" style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}>
           <h3 className="font-display text-2xl md:text-3xl font-bold text-white mb-3">
             {result.band === 'critical' || result.band === 'limited'
               ? 'Fix the Structure Before You Hire'
@@ -500,14 +500,14 @@ export default function ReadinessResults() {
               href="https://calendly.com/warren-zenna/cro-readiness-discovery"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-bold rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#FFBB00] text-[#00164D] hover:bg-white font-display font-bold rounded-[10px] transition-colors"
             >
               <Calendar className="w-4 h-4" />
               Book a Discovery Call
             </a>
             <Link
               to="/readiness/whitepaper"
-              className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white hover:border-white font-display font-bold rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 border border-white/35 text-white hover:border-white hover:bg-white/5 font-display font-bold rounded-[10px] transition-colors"
             >
               <FileText className="w-4 h-4" />
               Download White Paper
@@ -524,7 +524,7 @@ export default function ReadinessResults() {
           <p className="mt-2">
             &copy; {new Date().getFullYear()} The CRO Collective. All rights reserved.
             {' · '}
-            <a href="https://thecrocollective.com" target="_blank" rel="noopener noreferrer" className="text-blue hover:underline">
+            <a href="https://thecrocollective.com" target="_blank" rel="noopener noreferrer" className="text-[#1250C3] hover:underline">
               thecrocollective.com
             </a>
           </p>
