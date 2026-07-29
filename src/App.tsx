@@ -9,6 +9,7 @@ import ReadinessLanding from './pages/ReadinessLanding'
 import ReadinessAssess from './pages/ReadinessAssess'
 import ReadinessResults from './pages/ReadinessResults'
 import ReadinessWhitepaper from './pages/ReadinessWhitepaper'
+import Offerings from './pages/Offerings'
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
       <Route path="/readiness/assess" element={<ReadinessAssess />} />
       <Route path="/readiness/results/:encoded" element={<ReadinessResults />} />
       <Route path="/readiness/whitepaper" element={<ReadinessWhitepaper />} />
+      <Route path="/readiness/offerings" element={<Offerings />} />
     </Routes>
   )
 }

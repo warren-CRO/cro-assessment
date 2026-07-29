@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowLeft, Download, CheckCircle } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Download, CheckCircle } from 'lucide-react'
 
 export default function ReadinessWhitepaper() {
   const handleDownload = () => {
@@ -247,57 +247,50 @@ export default function ReadinessWhitepaper() {
         {/* Offerings */}
         <Section title="How The CRO Collective Can Help">
           <p>
-            The CRO Collective is the only firm built around the CRO role itself — from diagnosis to deployment to ongoing operating support. Our work spans the full lifecycle: we diagnose why CROs fail, give companies the infrastructure to succeed, and support sitting CROs with the operating system they need.
-          </p>
-          <p className="font-semibold text-navy mt-4 mb-6">
-            "Failure diagnosis. Revenue architecture. Ongoing operating support."
+            The CRO Collective is the only firm built around the CRO role itself — from diagnosis to deployment to ongoing operating support. Every offering below addresses a specific phase of the CRO lifecycle.
           </p>
 
-          <div className="grid gap-6">
-            <OfferingCard
-              tier="Diagnostic"
+          <div className="grid gap-4 mt-6">
+            <WPOffering
               name="CRO Readiness Assessment"
-              price="Free"
-              description="The front door. A scored diagnostic across our proprietary 10-Dimension CRO-Readiness Framework that identifies your readiness band, maps you to the right CRO type, and pinpoints the specific gaps that would derail a hire."
-              features={['10-dimension organizational scoring', 'CRO type recommendation matched to your stage', 'Gap identification with prioritized recommendations', 'Readiness band classification (Critical → Advanced)']}
-              cta={{ label: 'Take the Assessment', href: '/readiness' }}
+              line="Find out if your company is ready — before you write the check."
+              anchor="readiness-assessment"
             />
-            <OfferingCard
-              tier="Flagship"
+            <WPOffering
               name="CRO Accelerator Course"
-              price="$6,800"
-              description="The industry's only comprehensive CRO development program. 10 core modules plus 10 elective modules, cohort-based, live online. Covers role identity, revenue architecture, financial modeling, GTM strategy, RevOps, board communication, team building, and change management."
-              features={['20 total modules (10 core + 10 elective) with capstone assessment', 'Cohort-based with application-only admission', 'Faculty: Warren Zenna, Derek Sather, Janelle Pierini', 'Pre-work required — live sessions operate at Apply level from minute one', 'Block A: CRO Foundation | Block B: Revenue Engine | Block C: Leadership & Execution']}
-              highlight
+              line="The only comprehensive development program for sitting and aspiring CROs. 20 modules. Cohort-based. Applied from day one."
+              anchor="accelerator"
             />
-            <OfferingCard
-              tier="Individual"
+            <WPOffering
               name="CRO in Transition"
-              price="Custom"
-              description="A bespoke program for CROs proactively architecting career transitions — exiting roles and designing the next one. Distinct from the Accelerator (which develops skills) and the Readiness Assessment (which diagnoses companies). This develops the individual leader's career architecture."
-              features={['CRO Scorecard self-assessment (D1–D9)', 'Narrative architecture (60-sec and 30-sec elevator pitches)', 'Severance negotiation coaching', '"Compounding" role design — matching vertical, stage, PE backing, and growth trajectory', 'Ongoing advisory during the search process']}
+              line="Career architecture for CROs designing their next move — not reacting to it."
+              anchor="transition"
             />
-            <OfferingCard
-              tier="Enterprise"
+            <WPOffering
               name="Interim CRO Bridge Program"
-              price="$150,000"
-              description="A 90-day fixed-fee engagement for companies in CRO transition — whether the seat is vacant, the current CRO is exiting, or the company needs operational leadership while they hire. TCC deploys an experienced interim CRO to stabilize revenue operations and architect the permanent role."
-              features={['90-day structured engagement with clear milestones', 'RARA diagnostic instrument (person-lens + org-lens)', 'Revenue stabilization and operational continuity', 'Permanent CRO role architecture and search support', 'Board-ready transition documentation']}
+              line="Don't let a vacant CRO seat cost you a year. 90-day operational leadership while you hire."
+              anchor="interim-bridge"
             />
-            <OfferingCard
-              tier="Consulting"
+            <WPOffering
               name="CRO Readiness Architecture Implementation"
-              price="$50,000 – $200,000+"
-              description="Full-scope consulting engagement: baseline CRO-Readiness diagnostic, six-month transformation and alignment buildout, data and metrics analysis, and CRO hire and onboarding support. The complete infrastructure build for companies serious about getting the CRO role right."
-              features={['Phase 1: CRO Readiness Assessment baseline diagnostic (4–6 weeks)', 'Phase 2: Six-month implementation — transformation and alignment buildout', 'Phase 3: Data & metrics add-on — Salesforce, profitability, ICP, comp plan analysis', 'Phase 4: CRO hire and onboarding — role definition, search, coaching']}
+              line="Close the gaps the assessment found. Full-scope consulting from diagnosis through CRO hire."
+              anchor="architecture-implementation"
             />
-            <OfferingCard
-              tier="Network"
+            <WPOffering
               name="CRO Roundtable Sponsorship"
-              price="$7,500/event"
-              description="Executive roundtable dinners in 14+ cities across the US. Curated peer conversations among CROs, CEOs, and PE operating partners. Sponsorship puts your brand in front of the revenue leadership community at intimate, high-signal events."
-              features={['Premier sponsorship: exclusive brand presence at individual events', 'Founding Partner: $75,000/year annual strategic partnership', 'Curated peer groups (15–25 per event), no pitches', 'Pipeline to TCC advisory and accelerator programs']}
+              line="Get your brand in front of CROs, CEOs, and PE partners at intimate executive dinners in 14+ cities."
+              anchor="roundtable"
             />
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              to="/readiness/offerings"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-navy hover:bg-navy-mid text-white font-display font-semibold text-sm rounded-lg transition-colors"
+            >
+              Explore All Offerings
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </Section>
 
@@ -446,36 +439,17 @@ function PhaseCard({ number, title, items }: { number: number; title: string; it
   )
 }
 
-function OfferingCard({ tier, name, price, description, features, highlight, cta }: {
-  tier: string; name: string; price: string; description: string; features: string[]
-  highlight?: boolean; cta?: { label: string; href: string }
-}) {
+function WPOffering({ name, line, anchor }: { name: string; line: string; anchor: string }) {
   return (
-    <div className={`rounded-xl border p-6 ${highlight ? 'border-cyan bg-blue-light/50 ring-1 ring-cyan/20' : 'border-light-alt'}`}>
-      <div className="flex items-start justify-between mb-3">
-        <div>
-          <span className="text-xs font-display font-semibold text-blue uppercase tracking-widest">{tier}</span>
-          <h4 className="font-display font-bold text-navy text-lg mt-1">{name}</h4>
-        </div>
-        <span className="font-display font-bold text-navy text-lg shrink-0">{price}</span>
+    <Link
+      to={`/readiness/offerings#${anchor}`}
+      className="flex items-start gap-4 p-5 rounded-xl border border-light-alt hover:border-blue/30 transition-colors group"
+    >
+      <div className="flex-1">
+        <h4 className="font-display font-bold text-navy group-hover:text-blue transition-colors">{name}</h4>
+        <p className="text-sm text-slate mt-1 leading-relaxed">{line}</p>
       </div>
-      <p className="text-sm text-slate leading-relaxed mb-4">{description}</p>
-      <div className="grid gap-1.5">
-        {features.map((f, i) => (
-          <div key={i} className="flex items-start gap-2">
-            <CheckCircle className="w-3.5 h-3.5 text-blue shrink-0 mt-0.5" />
-            <span className="text-xs text-slate">{f}</span>
-          </div>
-        ))}
-      </div>
-      {cta && (
-        <Link
-          to={cta.href}
-          className="inline-flex items-center gap-2 mt-4 px-5 py-2.5 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-semibold text-sm rounded-lg transition-colors"
-        >
-          {cta.label}
-        </Link>
-      )}
-    </div>
+      <ArrowRight className="w-4 h-4 text-slate-light group-hover:text-blue shrink-0 mt-1 transition-colors" />
+    </Link>
   )
 }
