@@ -40,7 +40,7 @@ export default function ReadinessWhitepaper() {
         {/* Cover */}
         <div className="rounded-2xl p-10 md:p-12 mb-10 text-center print:rounded-none print:p-0 print:mb-8" style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}>
           <img src="/logo-white.png" alt="The CRO Collective" className="h-8 mx-auto mb-6 print:h-6" />
-          <p className="text-xs font-display font-semibold text-[#FFBB00] uppercase tracking-[0.2em] mb-4">Research White Paper</p>
+          <p className="text-xs font-display font-semibold text-[#FFBB00] uppercase tracking-[0.2em] mb-4">CRO Readiness Overview</p>
           <h1 className="font-display text-3xl md:text-5xl font-bold text-white leading-tight mb-4">
             The CRO Readiness Crisis:<br />
             Why 70% of CROs Fail and<br />
@@ -55,10 +55,10 @@ export default function ReadinessWhitepaper() {
             The Chief Revenue Officer role has become one of the most structurally broken seats in the C-suite. With average tenure under 18 months, involuntary departure rates exceeding 70%, and replacement costs between $1.5M and $4M per failed hire, the CRO position represents both the highest-leverage and highest-risk executive investment a company can make.
           </p>
           <p>
-            This white paper presents research from The CRO Collective's analysis of hundreds of CRO engagements across growth-stage and PE-backed B2B companies. The central finding: <strong>CRO failure is not a talent problem — it is a structural readiness problem.</strong> Companies that score below threshold on organizational readiness dimensions will fail their CRO hire regardless of the candidate's resume.
+            This overview presents research from The CRO Collective's analysis of hundreds of CRO engagements across growth-stage and PE-backed B2B companies. The central finding: <strong>CRO failure is not a talent problem — it is a structural readiness problem.</strong> Companies that score below threshold on organizational readiness dimensions will fail their CRO hire regardless of the candidate's resume.
           </p>
           <p>
-            The paper introduces the 10-Dimension CRO-Readiness Framework, the Three-Layer Readiness Architecture, the Six Predictable Failure Patterns, and the Four CRO Types — proprietary diagnostic tools that allow companies to assess their CRO-readiness before making a hire.
+            This overview introduces the 10-Dimension CRO-Readiness Framework, the Three-Layer Readiness Architecture, the Six Predictable Failure Patterns, and the Four CRO Types — proprietary diagnostic tools that allow companies to assess their CRO-readiness before making a hire.
           </p>
         </Section>
 

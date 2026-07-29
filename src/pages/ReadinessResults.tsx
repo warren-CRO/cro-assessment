@@ -472,8 +472,8 @@ export default function ReadinessResults() {
             <div className="w-10 h-10 rounded-full bg-navy/5 flex items-center justify-center mb-4">
               <FileText className="w-5 h-5 text-navy" />
             </div>
-            <h4 className="font-display font-bold text-navy group-hover:text-blue transition-colors">Free White Paper</h4>
-            <p className="text-sm text-slate mt-1">Deep research on CRO readiness, failure patterns, and how TCC helps.</p>
+            <h4 className="font-display font-bold text-navy group-hover:text-blue transition-colors">CRO Readiness Overview</h4>
+            <p className="text-sm text-slate mt-1">The readiness crisis, failure patterns, and the framework behind the assessment.</p>
           </Link>
         </div>
 
@@ -510,7 +510,7 @@ export default function ReadinessResults() {
               className="inline-flex items-center gap-2 px-8 py-4 border border-white/35 text-white hover:border-white hover:bg-white/5 font-display font-bold rounded-[10px] transition-colors"
             >
               <FileText className="w-4 h-4" />
-              Download White Paper
+              Read the Overview
             </Link>
           </div>
         </div>

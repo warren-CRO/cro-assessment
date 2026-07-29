@@ -410,7 +410,7 @@ export default function PEResults() {
                 rel="noopener noreferrer"
                 className="group inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/35 text-white hover:border-white hover:bg-white/5 font-display font-semibold rounded-[10px] transition-all duration-200"
               >
-                Read the Revenue Leadership Framework
+                Read the CRO Readiness Overview
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>

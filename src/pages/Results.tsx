@@ -37,15 +37,15 @@ function trackEvent(eventName: string, params?: Record<string, string>) {
 function getCTACopy(intent: Intent) {
   switch (intent) {
     case 'research':
-      return { primary: 'Book a Free Strategy Session', secondary: 'Read the Revenue Leadership Framework' }
+      return { primary: 'Book a Free Strategy Session', secondary: 'Read the CRO Readiness Overview' }
     case 'warming':
-      return { primary: 'Book a Revenue Leadership Strategy Session', secondary: 'Read the Revenue Leadership Framework' }
+      return { primary: 'Book a Revenue Leadership Strategy Session', secondary: 'Read the CRO Readiness Overview' }
     case 'in-market':
-      return { primary: 'Book a Revenue Leadership Strategy Session', secondary: 'Read the Revenue Leadership Framework' }
+      return { primary: 'Book a Revenue Leadership Strategy Session', secondary: 'Read the CRO Readiness Overview' }
     case 'hot':
-      return { primary: "Let's Talk This Week", secondary: 'Read the Revenue Leadership Framework' }
+      return { primary: "Let's Talk This Week", secondary: 'Read the CRO Readiness Overview' }
     default:
-      return { primary: 'Book a Revenue Leadership Strategy Session', secondary: 'Read the Revenue Leadership Framework' }
+      return { primary: 'Book a Revenue Leadership Strategy Session', secondary: 'Read the CRO Readiness Overview' }
   }
 }
 

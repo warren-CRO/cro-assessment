@@ -227,12 +227,46 @@ interface ContactInfo {
   linkedin: string
 }
 
+const FREE_EMAIL_DOMAINS = new Set([
+  'gmail.com','yahoo.com','hotmail.com','outlook.com','aol.com','icloud.com',
+  'mail.com','protonmail.com','zoho.com','yandex.com','gmx.com','live.com',
+  'msn.com','me.com','mac.com','fastmail.com','tutanota.com','hey.com',
+])
+
+function isCompanyEmail(email: string): boolean {
+  const domain = email.split('@')[1]?.toLowerCase()
+  return !!domain && !FREE_EMAIL_DOMAINS.has(domain)
+}
+
+function isLinkedInProfile(url: string): boolean {
+  const cleaned = url.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '')
+  return /^linkedin\.com\/in\/[a-z0-9_-]{3,100}\/?$/.test(cleaned)
+}
+
 function QIntake({ onSubmit }: { onSubmit: (contact: ContactInfo) => void }) {
   const [form, setForm] = useState<ContactInfo>({ name: '', company: '', title: '', email: '', linkedin: '' })
-  const update = (field: keyof ContactInfo, value: string) => setForm(prev => ({ ...prev, [field]: value }))
+  const [errors, setErrors] = useState<Partial<Record<keyof ContactInfo, string>>>({})
+  const update = (field: keyof ContactInfo, value: string) => {
+    setForm(prev => ({ ...prev, [field]: value }))
+    if (errors[field]) setErrors(prev => ({ ...prev, [field]: undefined }))
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    const newErrors: Partial<Record<keyof ContactInfo, string>> = {}
+
+    if (!isCompanyEmail(form.email)) {
+      newErrors.email = 'Please use your company email address'
+    }
+    if (!isLinkedInProfile(form.linkedin)) {
+      newErrors.linkedin = 'Please enter a valid LinkedIn profile URL (linkedin.com/in/yourname)'
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
+      return
+    }
+
     onSubmit(form)
   }
 
@@ -249,9 +283,9 @@ function QIntake({ onSubmit }: { onSubmit: (contact: ContactInfo) => void }) {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <InputField label="Title" value={form.title} onChange={v => update('title', v)} required placeholder="CEO" />
-            <InputField label="Email" value={form.email} onChange={v => update('email', v)} required type="email" placeholder="you@company.com" />
+            <InputField label="Work Email" value={form.email} onChange={v => update('email', v)} required type="email" placeholder="you@company.com" error={errors.email} />
           </div>
-          <InputField label="LinkedIn Profile" value={form.linkedin} onChange={v => update('linkedin', v)} placeholder="linkedin.com/in/yourprofile" />
+          <InputField label="LinkedIn Profile" value={form.linkedin} onChange={v => update('linkedin', v)} required placeholder="linkedin.com/in/yourprofile" error={errors.linkedin} />
           <button
             type="submit"
             className="group mt-2 w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#FFBB00] hover:bg-white text-[#00164D] font-display font-bold text-lg rounded-xl transition-all duration-200"
@@ -266,8 +300,8 @@ function QIntake({ onSubmit }: { onSubmit: (contact: ContactInfo) => void }) {
   )
 }
 
-function InputField({ label, value, onChange, required, type, placeholder }: {
-  label: string; value: string; onChange: (v: string) => void; required?: boolean; type?: string; placeholder?: string
+function InputField({ label, value, onChange, required, type, placeholder, error }: {
+  label: string; value: string; onChange: (v: string) => void; required?: boolean; type?: string; placeholder?: string; error?: string
 }) {
   return (
     <div>
@@ -278,8 +312,13 @@ function InputField({ label, value, onChange, required, type, placeholder }: {
         value={value}
         onChange={e => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full px-4 py-3.5 rounded-xl border-2 border-[#E3E8F1] bg-white text-sm text-navy placeholder:text-slate-light/60 focus:outline-none focus:border-[#3778F4] focus:ring-2 focus:ring-[#3778F4]/14 transition-all"
+        className={`w-full px-4 py-3.5 rounded-xl border-2 bg-white text-sm text-navy placeholder:text-slate-light/60 focus:outline-none focus:ring-2 transition-all ${
+          error
+            ? 'border-[#E4572E] focus:border-[#E4572E] focus:ring-[#E4572E]/14'
+            : 'border-[#E3E8F1] focus:border-[#3778F4] focus:ring-[#3778F4]/14'
+        }`}
       />
+      {error && <p className="text-xs text-[#E4572E] mt-1.5">{error}</p>}
     </div>
   )
 }
