@@ -9,6 +9,8 @@ import {
   ChevronUp,
   Lock,
   Mail,
+  Phone,
+  FileText,
 } from 'lucide-react'
 import type {
   ContextAnswers,
@@ -427,6 +429,34 @@ export default function ReadinessResults() {
           )}
         </div>
 
+        {/* Next Steps */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          <a
+            href={`mailto:info@thecrocollective.com?subject=${encodeURIComponent(`Schedule a Call — CRO Readiness (${band.label}, ${result.totalScore}/50)`)}&body=${encodeURIComponent(`I just completed the CRO Readiness Assessment and scored ${result.totalScore}/50 (${band.label}).\n\nI'd like to schedule a call to discuss next steps for our CRO hire.\n\nRole: ${result.context.role}\nRevenue: ${result.context.revenue}\nFunding: ${result.context.funding}`)}`}
+            className="flex items-start gap-4 p-6 rounded-xl border-2 border-cyan/30 bg-blue-light hover:border-cyan transition-colors group"
+          >
+            <div className="w-10 h-10 rounded-full bg-cyan/20 flex items-center justify-center shrink-0">
+              <Phone className="w-5 h-5 text-blue" />
+            </div>
+            <div>
+              <h4 className="font-display font-bold text-navy group-hover:text-blue transition-colors">Schedule a Call</h4>
+              <p className="text-sm text-slate mt-1">Talk directly with our team about your CRO readiness and next steps.</p>
+            </div>
+          </a>
+          <Link
+            to="/readiness/whitepaper"
+            className="flex items-start gap-4 p-6 rounded-xl border-2 border-light-alt hover:border-blue/30 transition-colors group"
+          >
+            <div className="w-10 h-10 rounded-full bg-navy/5 flex items-center justify-center shrink-0">
+              <FileText className="w-5 h-5 text-navy" />
+            </div>
+            <div>
+              <h4 className="font-display font-bold text-navy group-hover:text-blue transition-colors">Free White Paper</h4>
+              <p className="text-sm text-slate mt-1">Download our deep research on CRO readiness, failure patterns, and the full TCC offering suite.</p>
+            </div>
+          </Link>
+        </div>
+
         {/* CTA */}
         <div className="rounded-2xl p-8 text-center" style={{ background: 'linear-gradient(241.73deg, #02033C 26.8%, #033E8A 95.98%)' }}>
           <h3 className="font-display text-2xl font-bold text-white mb-3">
@@ -445,12 +475,21 @@ export default function ReadinessResults() {
                 : 'You\'ve built the readiness. The CRO Collective helps you get the integration right — the match, the onboarding architecture, the first 90 days, and the CEO-CRO operating dynamic that makes it last.'
             }
           </p>
-          <a
-            href={`mailto:info@thecrocollective.com?subject=${encodeURIComponent(`CRO Readiness Assessment — ${band.label} (${result.totalScore}/50)`)}&body=${encodeURIComponent(`I just completed the CRO Readiness Assessment and scored ${result.totalScore}/50 (${band.label}).\n\nI'd like to discuss next steps for our CRO hire.\n\nRole: ${result.context.role}\nRevenue: ${result.context.revenue}\nFunding: ${result.context.funding}`)}`}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-semibold rounded-lg transition-colors"
-          >
-            Talk to The CRO Collective
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href={`mailto:info@thecrocollective.com?subject=${encodeURIComponent(`CRO Readiness Assessment — ${band.label} (${result.totalScore}/50)`)}&body=${encodeURIComponent(`I just completed the CRO Readiness Assessment and scored ${result.totalScore}/50 (${band.label}).\n\nI'd like to discuss next steps for our CRO hire.\n\nRole: ${result.context.role}\nRevenue: ${result.context.revenue}\nFunding: ${result.context.funding}`)}`}
+              className="inline-flex items-center gap-2 px-8 py-4 bg-cyan hover:bg-blue text-navy hover:text-white font-display font-semibold rounded-lg transition-colors"
+            >
+              Talk to The CRO Collective
+            </a>
+            <Link
+              to="/readiness/whitepaper"
+              className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white hover:border-white font-display font-semibold rounded-lg transition-colors"
+            >
+              <FileText className="w-4 h-4" />
+              Download White Paper
+            </Link>
+          </div>
         </div>
 
         {/* Footer */}
