@@ -76,6 +76,7 @@ const offerings = [
       'Board-ready transition documentation',
     ],
     tiers: 'Scoped by operational complexity and company stage.',
+    decks: [{ label: 'Program Overview', href: '/decks/Interim-CRO-Bridge-Overview.pdf' }],
     color: '#EF476F',
     variant: 'light' as const,
   },
