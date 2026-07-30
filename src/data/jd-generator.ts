@@ -65,8 +65,6 @@ export function generateJD(
   const isPE = context.funding === 'pe-backed'
   const isEarlyStage = context.revenue === '1-5m' || context.revenue === '5-10m'
   const isMidMarket = context.revenue === '10-25m' || context.revenue === '25-50m'
-  const isEnterprise = context.revenue === '50-100m' || context.revenue === '200m-plus'
-
   const title = `Chief Revenue Officer — ${croType.type}`
 
   const subtitle = getSubtitle(croType.type, band, isPE)
@@ -130,7 +128,7 @@ function getSubtitle(type: string, band: ReadinessBand, isPE: boolean): string {
   }
 }
 
-function buildCompanyContext(revLabel: string, fundLabel: string, band: ReadinessBand, isPE: boolean, isEarlyStage: boolean, isMidMarket: boolean): string {
+function buildCompanyContext(revLabel: string, fundLabel: string, _band: ReadinessBand, isPE: boolean, isEarlyStage: boolean, isMidMarket: boolean): string {
   const baseContext = `This position is for a ${fundLabel} B2B company at ${revLabel} in annual revenue.`
 
   if (isPE) {
@@ -148,7 +146,7 @@ function buildCompanyContext(revLabel: string, fundLabel: string, band: Readines
   return `${baseContext} At this scale, the company requires a CRO who can architect multi-motion revenue strategies, manage organizational complexity, and operate at a board-governance level.`
 }
 
-function buildRoleSummary(type: string, band: ReadinessBand, context: ContextAnswers, isPE: boolean): string {
+function buildRoleSummary(type: string, band: ReadinessBand, _context: ContextAnswers, _isPE: boolean): string {
   const bandContext = band === 'critical' || band === 'limited'
     ? ' Note: this organization has identified readiness gaps that should be addressed in parallel with or prior to this hire. The role scope below reflects those conditions.'
     : ''
@@ -180,7 +178,7 @@ function buildRoleSummary(type: string, band: ReadinessBand, context: ContextAns
   return `The CRO will own end-to-end revenue strategy and execution across all customer-facing functions.${bandContext}`
 }
 
-function buildScope(type: string, band: ReadinessBand): string[] {
+function buildScope(type: string, _band: ReadinessBand): string[] {
   const base = ['Revenue strategy and annual/quarterly planning', 'Pipeline management and forecasting']
 
   if (type === 'Builder / Starter CRO') {
@@ -250,7 +248,7 @@ function buildScope(type: string, band: ReadinessBand): string[] {
   ]
 }
 
-function buildResponsibilities(type: string, band: ReadinessBand, gaps: ReturnType<typeof getGapRecommendations>, isPE: boolean, context: ContextAnswers): string[] {
+function buildResponsibilities(type: string, _band: ReadinessBand, gaps: ReturnType<typeof getGapRecommendations>, isPE: boolean, _context: ContextAnswers): string[] {
   const responsibilities: string[] = []
 
   if (type === 'Builder / Starter CRO') {
@@ -344,7 +342,7 @@ function buildResponsibilities(type: string, band: ReadinessBand, gaps: ReturnTy
   return responsibilities
 }
 
-function buildFirstNinetyDays(type: string, gaps: ReturnType<typeof getGapRecommendations>, redGaps: DimensionScore[], band: ReadinessBand, isPE: boolean): { priority: string; detail: string }[] {
+function buildFirstNinetyDays(type: string, gaps: ReturnType<typeof getGapRecommendations>, redGaps: DimensionScore[], _band: ReadinessBand, isPE: boolean): { priority: string; detail: string }[] {
   const priorities: { priority: string; detail: string }[] = []
 
   priorities.push({
@@ -419,7 +417,7 @@ function buildFirstNinetyDays(type: string, gaps: ReturnType<typeof getGapRecomm
   return priorities
 }
 
-function buildRequiredQualifications(type: string, revenue: ReadinessRevenue, isPE: boolean, funding: ReadinessFunding): string[] {
+function buildRequiredQualifications(type: string, revenue: ReadinessRevenue, isPE: boolean, _funding: ReadinessFunding): string[] {
   const quals: string[] = []
 
   const revRange: Record<ReadinessRevenue, string> = {
@@ -489,7 +487,7 @@ function buildRequiredQualifications(type: string, revenue: ReadinessRevenue, is
   return quals
 }
 
-function buildPreferredQualifications(type: string, revenue: ReadinessRevenue, isPE: boolean, gaps: ReturnType<typeof getGapRecommendations>): string[] {
+function buildPreferredQualifications(type: string, _revenue: ReadinessRevenue, isPE: boolean, gaps: ReturnType<typeof getGapRecommendations>): string[] {
   const prefs: string[] = []
 
   if (isPE) {
@@ -519,7 +517,7 @@ function buildPreferredQualifications(type: string, revenue: ReadinessRevenue, i
   return prefs
 }
 
-function buildSuccessMetrics(type: string, band: ReadinessBand, gaps: ReturnType<typeof getGapRecommendations>, isPE: boolean): { timeframe: string; metrics: string[] }[] {
+function buildSuccessMetrics(_type: string, band: ReadinessBand, _gaps: ReturnType<typeof getGapRecommendations>, isPE: boolean): { timeframe: string; metrics: string[] }[] {
   const metrics: { timeframe: string; metrics: string[] }[] = []
 
   if (band === 'critical' || band === 'limited') {
@@ -607,7 +605,7 @@ function buildNotThisRole(type: string, band: ReadinessBand, context: ContextAns
   return warnings
 }
 
-function buildInterviewFocus(gaps: ReturnType<typeof getGapRecommendations>, redGaps: DimensionScore[], yellowGaps: DimensionScore[], type: string, context: ContextAnswers): { area: string; why: string }[] {
+function buildInterviewFocus(gaps: ReturnType<typeof getGapRecommendations>, _redGaps: DimensionScore[], _yellowGaps: DimensionScore[], type: string, context: ContextAnswers): { area: string; why: string }[] {
   const focus: { area: string; why: string }[] = []
 
   if (type === 'Builder / Starter CRO') {
@@ -665,7 +663,7 @@ function buildInterviewFocus(gaps: ReturnType<typeof getGapRecommendations>, red
   return focus
 }
 
-function buildReadinessWarnings(band: ReadinessBand, redGaps: DimensionScore[], totalScore: number, context: ContextAnswers): string[] {
+function buildReadinessWarnings(band: ReadinessBand, redGaps: DimensionScore[], totalScore: number, _context: ContextAnswers): string[] {
   const warnings: string[] = []
 
   if (band === 'critical') {

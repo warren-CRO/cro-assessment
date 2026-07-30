@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowLeft, ArrowRight, Download, CheckCircle, AlertTriangle, TrendingDown, Users, ShieldOff, Swords, Zap, Shuffle } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Download, CheckCircle, AlertTriangle, TrendingDown, ShieldOff, Swords, Zap, Shuffle } from 'lucide-react'
 
 const cardShadow = '0 1px 3px rgba(0,22,77,0.05), 0 12px 32px rgba(0,22,77,0.05)'
 
