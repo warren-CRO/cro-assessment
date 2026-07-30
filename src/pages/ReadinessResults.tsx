@@ -7,11 +7,10 @@ import {
   RotateCcw,
   ChevronDown,
   ChevronUp,
-  Lock,
-  Mail,
   Phone,
   FileText,
   Calendar,
+  Briefcase,
 } from 'lucide-react'
 import type {
   ContextAnswers,
@@ -62,8 +61,6 @@ const cardStyle = {
 export default function ReadinessResults() {
   const { encoded } = useParams<{ encoded: string }>()
   const [expandedGaps, setExpandedGaps] = useState<Set<string>>(new Set())
-  const [email, setEmail] = useState('')
-  const [emailSubmitted, setEmailSubmitted] = useState(false)
   const [copied, setCopied] = useState(false)
 
   const decoded = useMemo<Decoded | null>(() => {
@@ -92,8 +89,6 @@ export default function ReadinessResults() {
       return null
     }
   }, [decoded])
-
-  const hasIntakeContact = !!decoded?.contact?.email
 
   if (!result) {
     return (
@@ -134,31 +129,6 @@ export default function ReadinessResults() {
     }
   }
 
-  const handleEmailSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!email) return
-    trackEvent('readiness_email_capture', { band: result.band, score: String(result.totalScore) })
-
-    try {
-      await fetch('/api/capture', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email,
-          band: result.band,
-          score: result.totalScore,
-          role: result.context.role,
-          revenue: result.context.revenue,
-          funding: result.context.funding,
-          hireReason: result.context.hireReason,
-          gaps: gaps.map(g => ({ dimension: g.dimension, score: g.score })),
-        }),
-      })
-    } catch {
-      // still show success — we log to analytics
-    }
-    setEmailSubmitted(true)
-  }
 
   return (
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F4F6FA' }}>
@@ -376,66 +346,32 @@ export default function ReadinessResults() {
           </div>
         )}
 
-        {/* Email Gate / Intake Confirmation */}
+        {/* Custom JD Generator */}
         <div className="rounded-[18px] p-8 mb-8" style={{ ...cardStyle, backgroundColor: 'rgba(255,187,0,0.06)', borderColor: '#FFBB00', borderWidth: 2 }}>
-          {hasIntakeContact ? (
-            <div className="text-center py-4">
-              <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h3 className="font-display text-xl font-bold text-navy mb-2">We'll Be in Touch</h3>
-              <p className="text-sm text-slate">
-                We've received your assessment. A member of The CRO Collective team will reach out to <span className="font-medium text-navy">{decoded!.contact!.email}</span> within 24 hours with your custom CRO job description and full readiness report.
-              </p>
+          <div className="flex items-start gap-5">
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: '#FFBB00' }}>
+              <Briefcase className="w-6 h-6 text-[#00164D]" />
             </div>
-          ) : !emailSubmitted ? (
-            <>
-              <div className="flex items-center gap-2 mb-3">
-                <Lock className="w-4 h-4 text-[#1AA0D0]" />
-                <p className="text-xs font-display font-semibold text-[#1AA0D0] uppercase tracking-widest">Full Report + Custom JD</p>
-              </div>
+            <div className="flex-1">
               <h3 className="font-display text-xl font-bold text-navy mb-2">
-                Get Your Custom CRO Job Description
+                Your Custom CRO Job Description
               </h3>
-              <p className="text-sm text-slate leading-relaxed mb-6">
-                Based on your assessment, we'll generate a CRO job description tailored to your company's stage, the type of CRO you need, and the readiness gaps to address before hiring. You'll also get the full readiness report with detailed recommendations.
+              <p className="text-sm text-slate leading-relaxed mb-2">
+                Based on your readiness profile, we've generated a CRO job description tailored to your company's stage, the <span className="font-medium text-navy">{croType.type}</span> you need, and the {gaps.length > 0 ? `${gaps.length} readiness gap${gaps.length === 1 ? '' : 's'}` : 'conditions'} to address.
               </p>
-              <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3">
-                <div className="flex-1 relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-light" />
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    placeholder="your@email.com"
-                    className="w-full pl-10 pr-4 py-3 rounded-lg border border-light-alt bg-white text-sm text-navy placeholder:text-slate-light focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="px-6 py-3 bg-[#00164D] hover:bg-[#1250C3] text-white font-display font-bold text-sm rounded-lg transition-colors shrink-0"
-                >
-                  Generate My JD
-                </button>
-              </form>
-              <p className="text-xs text-slate-light mt-3">No spam. Just your custom report and JD.</p>
-            </>
-          ) : (
-            <div className="text-center py-4">
-              <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h3 className="font-display text-xl font-bold text-navy mb-2">We'll Be in Touch</h3>
-              <p className="text-sm text-slate">
-                We've received your request. A member of The CRO Collective team will send your custom CRO job description and full readiness report to <span className="font-medium text-navy">{email}</span> within 24 hours.
+              <p className="text-sm text-slate leading-relaxed mb-5">
+                Includes role scope, responsibilities, first 90-day priorities, qualifications, success metrics, interview architecture, and compensation guidance.
               </p>
+              <Link
+                to={`/readiness/jd/${encoded}`}
+                className="group inline-flex items-center gap-3 px-6 py-3.5 bg-[#00164D] hover:bg-[#1250C3] text-white font-display font-bold text-sm rounded-xl transition-colors"
+              >
+                <Briefcase className="w-4 h-4" />
+                View Your Custom JD
+                <span className="text-white/40 group-hover:text-white/60 transition-colors">→</span>
+              </Link>
             </div>
-          )}
+          </div>
         </div>
 
         {/* Next Steps */}
