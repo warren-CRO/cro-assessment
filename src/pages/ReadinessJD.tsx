@@ -71,7 +71,7 @@ export default function ReadinessJD() {
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F4F6FA' }}>
       <nav className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10 print:hidden">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-          <img src="/logo-white.png" alt="The CRO Collective" className="h-7" />
+          <a href="https://thecrocollective.com" target="_blank" rel="noopener noreferrer"><img src="/logo-white.png" alt="The CRO Collective" className="h-7" /></a>
           <div className="flex items-center gap-3">
             <button
               onClick={async () => {
@@ -142,7 +142,7 @@ export default function ReadinessJD() {
           className="rounded-[18px] p-8 md:p-10 mb-8 print:rounded-none print:p-0 print:mb-6"
           style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}
         >
-          <img src="/logo-white.png" alt="The CRO Collective" className="h-6 mb-6 hidden print:block" />
+          <a href="https://thecrocollective.com" target="_blank" rel="noopener noreferrer"><img src="/logo-white.png" alt="The CRO Collective" className="h-6 mb-6 hidden print:block" /></a>
           <p className="text-xs font-display font-semibold text-[#FFBB00] uppercase tracking-[0.2em] mb-3">
             Custom Job Description
           </p>

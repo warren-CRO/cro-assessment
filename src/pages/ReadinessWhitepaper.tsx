@@ -8,7 +8,7 @@ export default function ReadinessWhitepaper() {
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F4F6FA' }}>
       <nav className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10 print:hidden">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-          <img src="/logo-white.png" alt="The CRO Collective" className="h-7" />
+          <a href="https://thecrocollective.com" target="_blank" rel="noopener noreferrer"><img src="/logo-white.png" alt="The CRO Collective" className="h-7" /></a>
           <div className="flex items-center gap-3">
             <button
               onClick={() => window.print()}
@@ -41,7 +41,7 @@ export default function ReadinessWhitepaper() {
         {/* ─── HERO ─── */}
         <div className="max-w-5xl mx-auto px-6 mt-8 mb-12 print:mt-0 print:mb-8">
           <div className="rounded-2xl p-10 md:p-14 text-center print:rounded-none print:p-0" style={{ background: 'linear-gradient(241.73deg, #00164D 26.8%, #0147C9 95.98%)' }}>
-            <img src="/logo-white.png" alt="The CRO Collective" className="h-8 mx-auto mb-6 print:h-6" />
+            <a href="https://thecrocollective.com" target="_blank" rel="noopener noreferrer"><img src="/logo-white.png" alt="The CRO Collective" className="h-8 mx-auto mb-6 print:h-6" /></a>
             <p className="text-xs font-display font-semibold text-[#FFBB00] uppercase tracking-[0.2em] mb-4">CRO Readiness Overview</p>
             <h1 className="font-display text-3xl md:text-5xl font-bold text-white leading-tight mb-4">
               The CRO Readiness Crisis:<br />

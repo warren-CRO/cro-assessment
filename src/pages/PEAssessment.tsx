@@ -102,7 +102,7 @@ export default function PEAssessment() {
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F4F6FA' }}>
       <div className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center">
-          <img src="/logo-white.png" alt="The CRO Collective" className="h-7" />
+          <a href="https://thecrocollective.com" target="_blank" rel="noopener noreferrer"><img src="/logo-white.png" alt="The CRO Collective" className="h-7" /></a>
         </div>
       </div>
 
