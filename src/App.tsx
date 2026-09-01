@@ -12,10 +12,36 @@ import ReadinessWhitepaper from './pages/ReadinessWhitepaper'
 import Offerings from './pages/Offerings'
 import ReadinessJD from './pages/ReadinessJD'
 
+function isReadinessHost() {
+  return window.location.hostname.startsWith('cro-readiness')
+}
+
+function ReadinessRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<ReadinessLanding />} />
+      <Route path="/assess" element={<ReadinessAssess />} />
+      <Route path="/results/:encoded" element={<ReadinessResults />} />
+      <Route path="/whitepaper" element={<ReadinessWhitepaper />} />
+      <Route path="/jd/:encoded" element={<ReadinessJD />} />
+      <Route path="/offerings" element={<Offerings />} />
+      <Route path="/readiness" element={<ReadinessLanding />} />
+      <Route path="/readiness/assess" element={<ReadinessAssess />} />
+      <Route path="/readiness/results/:encoded" element={<ReadinessResults />} />
+      <Route path="/readiness/whitepaper" element={<ReadinessWhitepaper />} />
+      <Route path="/readiness/jd/:encoded" element={<ReadinessJD />} />
+      <Route path="/readiness/offerings" element={<Offerings />} />
+    </Routes>
+  )
+}
+
 export default function App() {
+  if (isReadinessHost()) return <ReadinessRoutes />
+
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
+      <Route path="/diagnostic" element={<Landing />} />
       <Route path="/quiz" element={<Quiz />} />
       <Route path="/results/:encoded" element={<Results />} />
       <Route path="/pe" element={<PELanding />} />

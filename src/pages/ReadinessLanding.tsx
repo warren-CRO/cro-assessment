@@ -1,8 +1,12 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight, Clock, Target, Zap, FileText } from 'lucide-react'
 
 export default function ReadinessLanding() {
   const navigate = useNavigate()
+  useEffect(() => {
+    document.title = 'CRO Readiness Assessment | The CRO Collective'
+  }, [])
 
   return (
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F4F6FA' }}>

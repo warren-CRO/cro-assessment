@@ -1,8 +1,12 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight, Clock, Target, Zap } from 'lucide-react'
 
 export default function Landing() {
   const navigate = useNavigate()
+  useEffect(() => {
+    document.title = 'Revenue Leadership Diagnostic | The CRO Collective'
+  }, [])
 
   return (
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F4F6FA' }}>
@@ -37,20 +41,18 @@ export default function Landing() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 text-white/80 text-sm font-medium mb-8">
             <Clock className="w-4 h-4" />
-            8 questions &middot; 3 minutes
+            8 questions &middot; 7 minutes
           </div>
 
           {/* Headline */}
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white">
-            Is Your Approach to Revenue Leadership{' '}
+            Is Your Approach to Revenue Growth{' '}
             <span className="text-[#FFBB00]">Actually Working?</span>
           </h1>
 
           {/* Subhead */}
           <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-10 max-w-xl mx-auto">
-            Most companies don't have a revenue problem — they have a revenue{' '}
-            <em>leadership</em> problem. This quick diagnostic will tell you
-            exactly what's going on and what to do about it.
+            If not, you likely have an architecture problem. Your sales, marketing, and CS functions aren't underperforming — they were never designed to work together. This 7-minute diagnostic tells you where the architecture breaks and what to fix first.
           </p>
 
           {/* CTA */}
