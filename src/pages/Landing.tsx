@@ -52,7 +52,7 @@ export default function Landing() {
 
           {/* Subhead */}
           <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-10 max-w-xl mx-auto">
-            If not, you likely have an architecture problem. Your sales, marketing, and CS functions aren't underperforming — they were never designed to work together. This 7-minute diagnostic tells you where the architecture breaks and what to fix first.
+            Running a revenue organization is harder now than ever. This 7-minute diagnostic tells you where the architecture breaks and what to fix first.
           </p>
 
           {/* CTA */}
