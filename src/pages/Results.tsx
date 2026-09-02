@@ -102,7 +102,7 @@ export default function Results() {
   const handleShare = async () => {
     trackEvent('share_results', { archetype: result.name })
     if (navigator.share) {
-      await navigator.share({ title: `My Revenue Leadership Pattern: ${result.name}`, url: shareUrl })
+      await navigator.share({ title: `Revenue Diagnostic: ${result.name}`, url: shareUrl })
     } else {
       await navigator.clipboard.writeText(shareUrl)
       setCopied(true)

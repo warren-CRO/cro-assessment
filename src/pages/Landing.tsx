@@ -1,11 +1,22 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowRight, Clock, Target, Zap } from 'lucide-react'
+import { ArrowRight, Clock, Target, Zap, Link as LinkIcon } from 'lucide-react'
 
 export default function Landing() {
   const navigate = useNavigate()
+  const [copied, setCopied] = useState(false)
+  const handleCopyLink = async () => {
+    const url = window.location.origin
+    if (navigator.share) {
+      await navigator.share({ title: 'Revenue Diagnostic | The CRO Collective', url })
+    } else {
+      await navigator.clipboard.writeText(url)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2500)
+    }
+  }
   useEffect(() => {
-    document.title = 'Revenue Leadership Diagnostic | The CRO Collective'
+    document.title = 'Revenue Diagnostic | The CRO Collective'
   }, [])
 
   return (
@@ -62,6 +73,13 @@ export default function Landing() {
           >
             Start the Clarity Check
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </button>
+          <button
+            onClick={handleCopyLink}
+            className="mt-4 inline-flex items-center gap-2 text-white/60 hover:text-white text-sm transition-colors"
+          >
+            <LinkIcon className="w-4 h-4" />
+            {copied ? 'Link Copied!' : 'Share This Diagnostic'}
           </button>
         </div>
       </div>
